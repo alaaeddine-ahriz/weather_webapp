@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+# README for the 3TC WEB Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Fonctionnalités de base
 
-## Available Scripts
+Cette section spécifie les fonctionnalités minimales du projet.
 
-In the project directory, you can run:
+### Page de connexion
 
-### `npm start`
+- Formulaire pour se connecter (login/mdp)
+- Hypertexte pour mdp_oublié
+- Hypertexte pour créer un compte
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Quand cliqués, font apparraître un nouveau bloc d'HTML dans la page (comme ici https://youtu.be/-oQnDrNzTTA?si=uv1L2mM_oBrRNPTZ&t=77)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Page d'accueil
 
-### `npm test`
+Si l'utilisateur n'est pas connecté :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- cf. page de connexion
 
-### `npm run build`
+Sinon :
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Affichage de la météo actuelle
+  
+  - Récupération par API de nombreuses informations
+  - L'utilisateur choisi ce qu'il affiche
+- Prévisions météorologiques à court terme
+  
+  - Prévisions pour les prochaines heures.
+- Prévisions météorologiques à long terme
+  
+  - Prévisions pour les prochains jours.
+  - Températures minimales et maximales.
+- Barre de recherche de l'emplacement
+  
+  - Possibilité de rechercher et sélectionner un emplacement spécifique.
+  - Stockage des recherches météorologiques récentes de l'utilisateur.
+- Personnalisation des informations météorologiques
+  
+  - Enregistrement des préférences météorologiques de l'utilisateur (unités de mesure, langue, etc.).
+  - Possibilité de définir des lieux favoris.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Pour toutes les pages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Barre de navigation
+  
+  - Accès rapide à différentes sections du site (accueil, profil utilisateur, historique, etc.).
+- Footer
+  
+  - A définir
 
-### `npm run eject`
+Nicolas : Page de connexion / création de compte et section personnalisation utilisateur
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Fonctionnalités avancés
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Page de connexion
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Creer une page parametres utilisateur
+  
+- Fond dynamique pour la page de connexion
+  
+- Notification météo
+  
+  - Option pour activer/désactiver les notifications météorologiques.
+     Notifications pour des conditions météorologiques spécifiques ou des alertes.
+- Réactivité :
+  
+  - Conception réactive pour une expérience utilisateur optimale sur différents appareils (ordinateurs, tablettes, smartphones).
+- Actualisation automatique
+  
+  - Mise à jour automatique des informations météorologiques à intervalles réguliers.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Base de données
 
-## Learn More
+Premiere idee de chatgpt
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Voici un modèle de base de données simplifié pour les fonctionnalités que vous avez décrites :
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+Utilisateurs (Users) :
+    user_id (clé primaire)
+    email
+    mot_de_passe (peut être stocké de manière sécurisée, par exemple, en tant que hachage)
+    nom
+    autres informations utilisateur
 
-### Code Splitting
+Préférences Utilisateur (UserPreferences) :
+    user_id (clé étrangère référençant Users)
+    unités_de_mesure (par exemple, Celsius ou Fahrenheit)
+    langue
+    autres préférences utilisateur
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Emplacements (Locations) :
+    location_id (clé primaire)
+    nom (nom de l'emplacement, par exemple, ville ou région)
+    latitude
+    longitude
 
-### Analyzing the Bundle Size
+Historique de Recherche (SearchHistory) :
+    search_id (clé primaire)
+    user_id (clé étrangère référençant Users)
+    location_id (clé étrangère référençant Locations)
+    date_recherche
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Météo Actuelle (CurrentWeather) :
+    location_id (clé étrangère référençant Locations)
+    température
+    conditions_météorologiques
+    autres informations météorologiques actuelles
 
-### Making a Progressive Web App
+Prévisions Météorologiques à Court Terme (HourlyForecast) :
+    location_id (clé étrangère référençant Locations)
+    heure
+    température
+    conditions_météorologiques
+    autres informations de prévision horaire
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Prévisions Météorologiques à Long Terme (DailyForecast) :
+    location_id (clé étrangère référençant Locations)
+    date
+    température_min
+    température_max
+    conditions_météorologiques
+    autres informations de prévision quotidienne
+```
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Ce modèle de base de données prend en charge les fonctionnalités telles que la gestion des utilisateurs, la personnalisation des préférences utilisateur, le suivi de l'historique de recherche, et le stockage des données météorologiques actuelles et prévues pour différents emplacements. Vous pouvez l'ajuster en fonction de vos besoins spécifiques et des détails supplémentaires que vous souhaitez inclure.
