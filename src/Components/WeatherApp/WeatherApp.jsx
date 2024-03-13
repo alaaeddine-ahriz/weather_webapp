@@ -5,6 +5,7 @@ import search_icon from "../Assets/search.png";
 import wind_icon from "../Assets/wind.png";
 import humidity_icon from "../Assets/humidity.png";
 import clear_sky from "../Assets/01d@2x.png";
+// import clear_sky from "../Assets/sun.gif";
 import few_clouds from "../Assets/02d@2x.png";
 import scattered_clouds from "../Assets/03d@2x.png";
 import broken_clouds from "../Assets/04d@2x.png";
