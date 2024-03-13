@@ -7,6 +7,7 @@ import search_icon from "../Assets/search.png";
 import wind_icon from "../Assets/wind.png";
 import humidity_icon from "../Assets/humidity.png";
 import clear_sky from "../Assets/01d@2x.png";
+// import clear_sky from "../Assets/sun.gif";
 import few_clouds from "../Assets/02d@2x.png";
 import scattered_clouds from "../Assets/03d@2x.png";
 import broken_clouds from "../Assets/04d@2x.png";
@@ -23,7 +24,6 @@ export const WeatherApp = () => {
     let api_key = "41ad9850d25b95de0ec5b350ddd03b16";
 
     const [wicon,setWicon] = useState(few_clouds);
-    const [coords, setCoords] = useState([90, 90]);
 
     const search = async ( ) => {
         const element = document.getElementsByClassName("cityInput");
@@ -36,6 +36,8 @@ export const WeatherApp = () => {
 
         let response = await fetch(url);
         let data = await response.json();
+
+        setMinMaxTemp({ min: Math.floor(data.main.temp_min), max: Math.floor(data.main.temp_max) });
 
         const humidity = document.getElementsByClassName("humidity-percent");
         const wind = document.getElementsByClassName("wind-speed");
@@ -113,6 +115,7 @@ export const WeatherApp = () => {
         </div>
         <div className="weather-temp">20°</div>
         <div className="weather-location">Villeurbanne</div>
+        <div className="min-max-temp">H:{minMaxTemp.min}° | L:{minMaxTemp.max}°</div>
         <div className="data-container">
             <div className="element">
                 <img src={humidity_icon} alt="" className='icon'/>
