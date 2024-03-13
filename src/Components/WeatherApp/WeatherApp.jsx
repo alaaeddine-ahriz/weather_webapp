@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './WeatherApp.css'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 import search_icon from "../Assets/search.png";
 import wind_icon from "../Assets/wind.png";
@@ -16,9 +18,12 @@ import mist from "../Assets/50d@2x.png";
 
 export const WeatherApp = () => {
 
+    const position = [51.505, -0.09]
+
     let api_key = "41ad9850d25b95de0ec5b350ddd03b16";
 
     const [wicon,setWicon] = useState(few_clouds);
+    const [coords, setCoords] = useState([90, 90]);
 
     const search = async ( ) => {
         const element = document.getElementsByClassName("cityInput");
@@ -41,6 +46,8 @@ export const WeatherApp = () => {
         wind[0].innerHTML = Math.floor(data.wind.speed)+" km/h";
         temperature[0].innerHTML = Math.floor(data.main.temp)+"°";
         location[0].innerHTML = data.name;
+
+        setCoords([data.coord.lat, data.coord.lon]);
 
         if(data.weather[0].icon==="01d" || data.weather[0].icon==="01n")
         {
@@ -101,9 +108,9 @@ export const WeatherApp = () => {
                 <img src={search_icon} alt="" />
             </div>
         </div>
-        <di className="weather-image">
+        <div className="weather-image">
             <img src={wicon} alt="" />
-        </di>
+        </div>
         <div className="weather-temp">20°</div>
         <div className="weather-location">Villeurbanne</div>
         <div className="data-container">
@@ -122,6 +129,18 @@ export const WeatherApp = () => {
                 </div>
             </div>
         </div>
+        
+        <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={position}>
+        <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+        </Marker>
+        </MapContainer>
     </div>
   )
 }
