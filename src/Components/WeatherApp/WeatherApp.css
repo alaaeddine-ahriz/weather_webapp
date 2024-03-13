@@ -90,12 +90,3 @@
 .icon{
     margin-top: 0px;
 }
-
-.min-max-temp {
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-size: 24px; /* Adjust size as needed */
-    font-weight: 400;
-    margin-top: 10px; /* Adjust spacing as needed */
-}
