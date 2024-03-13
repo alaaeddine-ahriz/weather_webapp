@@ -19,6 +19,7 @@ export const WeatherApp = () => {
     let api_key = "41ad9850d25b95de0ec5b350ddd03b16";
 
     const [wicon,setWicon] = useState(few_clouds);
+    const [minMaxTemp, setMinMaxTemp] = useState({ min: 0, max: 0 }); // New state variable for min and max temperatures
 
     const search = async ( ) => {
         const element = document.getElementsByClassName("cityInput");
@@ -31,6 +32,8 @@ export const WeatherApp = () => {
 
         let response = await fetch(url);
         let data = await response.json();
+
+        setMinMaxTemp({ min: Math.floor(data.main.temp_min), max: Math.floor(data.main.temp_max) });
 
         const humidity = document.getElementsByClassName("humidity-percent");
         const wind = document.getElementsByClassName("wind-speed");
@@ -106,6 +109,7 @@ export const WeatherApp = () => {
         </di>
         <div className="weather-temp">20°</div>
         <div className="weather-location">Villeurbanne</div>
+        <div className="min-max-temp">H:{minMaxTemp.min}° | L:{minMaxTemp.max}°</div>
         <div className="data-container">
             <div className="element">
                 <img src={humidity_icon} alt="" className='icon'/>
