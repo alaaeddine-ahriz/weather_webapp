@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './WeatherApp.css'
-
 import search_icon from "../Assets/search.png";
 import wind_icon from "../Assets/wind.png";
 import humidity_icon from "../Assets/humidity.png";
@@ -13,6 +12,13 @@ import rain from "../Assets/10d@2x.png";
 import thunderstorm from "../Assets/11d@2x.png";
 import snow from "../Assets/13d@2x.png";
 import mist from "../Assets/50d@2x.png";
+
+var center = {
+    lat: 7.2905715, // default latitude
+    lng: 80.6337262, // default longitude
+  };
+  
+export { center};
 
 export const WeatherApp = () => {
 
@@ -28,7 +34,19 @@ export const WeatherApp = () => {
         }
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${api_key}`;
 
-
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${element[0].value}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.results && data.results.length > 0) {
+            const location = data.results[0].geometry.location;
+            center = {lat: location.lat, lng: location.lng};
+          } else {
+            console.error('Aucun résultat trouvé pour la ville spécifiée.');
+          }
+        })
+        .catch(error => {
+          console.error('Une erreur s\'est produite lors de la récupération des coordonnées :', error);
+        });
         let response = await fetch(url);
         let data = await response.json();
 
