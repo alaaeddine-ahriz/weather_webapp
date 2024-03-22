@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header_div {
+    width: 720px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: right;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* This will make the container circular */
+  overflow: hidden;
+  
+}
+
+.profile-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.logo-container {
+    display: flex;
+    justify-content: left;
+    font-size: 20px;
+  }
+  
+.logo-button {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+/* Add :hover states for better user interaction feedback */
+.profile-button:hover {
+  background-color: #e7e7e7;
+}

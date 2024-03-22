@@ -1,36 +1,62 @@
 import React, { useState } from 'react'
+import { MapComponent } from "./MapComponent.jsx"
+import { Header } from "./HeaderComponent.jsx"
+
 import './WeatherApp.css'
 
 import search_icon from "../Assets/search.png";
 import wind_icon from "../Assets/wind.png";
 import humidity_icon from "../Assets/humidity.png";
-import clear_sky from "../Assets/01d@2x.png";
-// import clear_sky from "../Assets/sun.gif";
-import few_clouds from "../Assets/02d@2x.png";
-import scattered_clouds from "../Assets/03d@2x.png";
-import broken_clouds from "../Assets/04d@2x.png";
-import shower_rain from "../Assets/09d@2x.png";
-import rain from "../Assets/10d@2x.png";
-import thunderstorm from "../Assets/11d@2x.png";
-import snow from "../Assets/13d@2x.png";
-import mist from "../Assets/50d@2x.png";
+import clear_sky from "../Assets/01d.svg";
+import few_clouds from "../Assets/02d.svg";
+import scattered_clouds from "../Assets/03d.svg";
+import broken_clouds from "../Assets/04d.svg";
+import shower_rain from "../Assets/09d.svg";
+import rain from "../Assets/10d.svg";
+import thunderstorm from "../Assets/11d.svg";
+import snow from "../Assets/13d.svg";
+import mist from "../Assets/50d.svg";
+
+var center = {
+    lat: 7.2905715, // default latitude
+    lng: 80.6337262, // default longitude
+  };
+  
+export { center};
 
 export const WeatherApp = () => {
 
+    const position = [51.505, -0.09]
+
     let api_key = "41ad9850d25b95de0ec5b350ddd03b16";
 
-    const [wicon,setWicon] = useState(few_clouds);
-    const [minMaxTemp, setMinMaxTemp] = useState({ min: 0, max: 0 }); // New state variable for min and max temperatures
+    const [wicon,setWicon] = useState(clear_sky);
+    const [coords, setCoords] = useState([90, 90]);
 
     const search = async ( ) => {
         const element = document.getElementsByClassName("cityInput");
         if(element[0].value==="")
         {
-            return 0;
+            alert("Please enter a city name."); // Or handle this case in a more user-friendly way
+            return;
         }
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${api_key}`;
 
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${element[0].value}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.results && data.results.length > 0) {
+            const location = data.results[0].geometry.location;
+            center = {lat: location.lat, lng: location.lng};
+          } else {
+            console.error('Aucun résultat trouvé pour la ville spécifiée.');
+          }
+        })
+        .catch(error => {
+          console.error('Une erreur s\'est produite lors de la récupération des coordonnées :', error);
+        });
 
+        
         let response = await fetch(url);
         let data = await response.json();
 
@@ -38,13 +64,17 @@ export const WeatherApp = () => {
 
         const humidity = document.getElementsByClassName("humidity-percent");
         const wind = document.getElementsByClassName("wind-speed");
+        const feels_like = document.getElementsByClassName("feels-like")
         const temperature = document.getElementsByClassName("weather-temp");
         const location = document.getElementsByClassName("weather-location");
 
         humidity[0].innerHTML = Math.floor(data.main.humidity)+" %";
         wind[0].innerHTML = Math.floor(data.wind.speed)+" km/h";
         temperature[0].innerHTML = Math.floor(data.main.temp)+"°";
+        feels_like[0].innerHTML = Math.floor(data.main.feels_like)+"°";
         location[0].innerHTML = data.name;
+
+        setCoords([data.coord.lat, data.coord.lon]);
 
         if(data.weather[0].icon==="01d" || data.weather[0].icon==="01n")
         {
@@ -99,15 +129,18 @@ export const WeatherApp = () => {
 
   return (
     <div className='container'>
+        <div className="header">
+            <Header/>
+        </div>
         <div className="top-bar">
             <input type="text" className="cityInput" placeholder='Search'/>
             <div className="search-icon" onClick={()=>{search()}}>
                 <img src={search_icon} alt="" />
             </div>
         </div>
-        <di className="weather-image">
+        <div className="weather-image">
             <img src={wicon} alt="" />
-        </di>
+        </div>
         <div className="weather-temp">20°</div>
         <div className="weather-location">Villeurbanne</div>
         <div className="min-max-temp">H:{minMaxTemp.min}° | L:{minMaxTemp.max}°</div>
@@ -126,6 +159,17 @@ export const WeatherApp = () => {
                     <div className="text">Vents</div>
                 </div>
             </div>
+            <div className="element">
+                <img src={wind_icon} alt="" className='icon'/>
+                <div className="data">
+                    <div className="feels-like">20°</div>
+                    <div className="text">Ressenti</div>
+                </div>
+            </div>
+            
+        </div>
+        <div className="map-container">
+            <MapComponent/>
         </div>
     </div>
   )
