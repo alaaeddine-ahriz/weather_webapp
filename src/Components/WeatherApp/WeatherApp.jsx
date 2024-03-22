@@ -56,12 +56,14 @@ export const WeatherApp = () => {
 
         const humidity = document.getElementsByClassName("humidity-percent");
         const wind = document.getElementsByClassName("wind-speed");
+        const feels_like = document.getElementsByClassName("feels-like")
         const temperature = document.getElementsByClassName("weather-temp");
         const location = document.getElementsByClassName("weather-location");
 
         humidity[0].innerHTML = Math.floor(data.main.humidity)+" %";
         wind[0].innerHTML = Math.floor(data.wind.speed)+" km/h";
         temperature[0].innerHTML = Math.floor(data.main.temp)+"°";
+        feels_like[0].innerHTML = Math.floor(data.main.feels_like)+"°";
         location[0].innerHTML = data.name;
 
         setCoords([data.coord.lat, data.coord.lon]);
@@ -148,8 +150,8 @@ export const WeatherApp = () => {
             <div className="element">
                 <img src={wind_icon} alt="" className='icon'/>
                 <div className="data">
-                    <div className="wind-speed">15 km/h</div>
-                    <div className="text">Vents</div>
+                    <div className="feels-like">20°</div>
+                    <div className="text">Ressenti</div>
                 </div>
             </div>
         </div>
