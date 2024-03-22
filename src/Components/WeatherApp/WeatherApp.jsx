@@ -5,15 +5,15 @@ import './WeatherApp.css'
 import search_icon from "../Assets/search.png";
 import wind_icon from "../Assets/wind.png";
 import humidity_icon from "../Assets/humidity.png";
-import clear_sky from "../Assets/01d@2x.png";
-import few_clouds from "../Assets/02d@2x.png";
-import scattered_clouds from "../Assets/03d@2x.png";
-import broken_clouds from "../Assets/04d@2x.png";
-import shower_rain from "../Assets/09d@2x.png";
-import rain from "../Assets/10d@2x.png";
-import thunderstorm from "../Assets/11d@2x.png";
-import snow from "../Assets/13d@2x.png";
-import mist from "../Assets/50d@2x.png";
+import clear_sky from "../Assets/01d.svg";
+import few_clouds from "../Assets/02d.svg";
+import scattered_clouds from "../Assets/03d.svg";
+import broken_clouds from "../Assets/04d.svg";
+import shower_rain from "../Assets/09d.svg";
+import rain from "../Assets/10d.svg";
+import thunderstorm from "../Assets/11d.svg";
+import snow from "../Assets/13d.svg";
+import mist from "../Assets/50d.svg";
 
 var center = {
     lat: 7.2905715, // default latitude
@@ -57,12 +57,14 @@ export const WeatherApp = () => {
 
         const humidity = document.getElementsByClassName("humidity-percent");
         const wind = document.getElementsByClassName("wind-speed");
+        const feels_like = document.getElementsByClassName("feels-like")
         const temperature = document.getElementsByClassName("weather-temp");
         const location = document.getElementsByClassName("weather-location");
 
         humidity[0].innerHTML = Math.floor(data.main.humidity)+" %";
         wind[0].innerHTML = Math.floor(data.wind.speed)+" km/h";
         temperature[0].innerHTML = Math.floor(data.main.temp)+"°";
+        feels_like[0].innerHTML = Math.floor(data.main.feels_like)+"°";
         location[0].innerHTML = data.name;
 
         setCoords([data.coord.lat, data.coord.lon]);
@@ -147,6 +149,13 @@ export const WeatherApp = () => {
                 </div>
             </div>
             <Mapp/>
+            <div className="element">
+                <img src={wind_icon} alt="" className='icon'/>
+                <div className="data">
+                    <div className="feels-like">20°</div>
+                    <div className="text">Ressenti</div>
+                </div>
+            </div>
         </div>
     </div>
   )
