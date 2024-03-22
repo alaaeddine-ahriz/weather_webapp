@@ -37,7 +37,8 @@ export const WeatherApp = () => {
         const element = document.getElementsByClassName("cityInput");
         if(element[0].value==="")
         {
-            return 0;
+            alert("Please enter a city name."); // Or handle this case in a more user-friendly way
+            return;
         }
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${api_key}`;
 
@@ -54,6 +55,8 @@ export const WeatherApp = () => {
         .catch(error => {
           console.error('Une erreur s\'est produite lors de la récupération des coordonnées :', error);
         });
+
+        
         let response = await fetch(url);
         let data = await response.json();
 
