@@ -1,8 +1,9 @@
 .container{
-    width: 700px;
-    height: 1200px;
+    width: 720px;
+    height: 1600px;
     margin: auto;
     background-image: linear-gradient(180deg, #130754 0%,#3b2f80 100%);
+    align-items: center;
 }
 
 .top-bar{
@@ -45,7 +46,7 @@
 }
 
 .weather-image {
-    margin-top: 20px;
+    margin-top: 40px;
     height: 200px; /* Fixed height of the container */
     display: flex; /* Using flexbox to center the content */
     justify-content: center; /* Horizontally center the content in the container */
@@ -102,7 +103,8 @@
 }
 
 .map-container {
-    margin-top: 50px;
-    width: 607px;
-    align-items: center;
-}
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 60px; 
+  }
+  
