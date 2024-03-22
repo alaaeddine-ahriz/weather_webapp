@@ -9,9 +9,9 @@ const mapContainerStyle = {
   height: '100vh',
 };
 
-export { Mapp };
+export { MapComponent };
 
-function Mapp() {
+function MapComponent() {
   const [clickPosition, setClickPosition] = useState(null);
   const [cityName, setCityName] = useState('');
 

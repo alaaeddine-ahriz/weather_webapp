@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Mapp } from "./MapComponent.jsx"
+import { MapComponent } from "./MapComponent.jsx"
 import './WeatherApp.css'
 
 import search_icon from "../Assets/search.png";
@@ -148,7 +148,6 @@ export const WeatherApp = () => {
                     <div className="text">Vents</div>
                 </div>
             </div>
-            <Mapp/>
             <div className="element">
                 <img src={wind_icon} alt="" className='icon'/>
                 <div className="data">
@@ -156,6 +155,7 @@ export const WeatherApp = () => {
                     <div className="text">Ressenti</div>
                 </div>
             </div>
+            {/* <MapComponent/> */}
         </div>
     </div>
   )

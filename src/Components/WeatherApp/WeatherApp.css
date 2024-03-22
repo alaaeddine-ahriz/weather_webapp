@@ -40,12 +40,13 @@
     cursor: pointer;
 }
 
-.weather-image{
-    /* margin-top: 30px; */
-    height: 200px;
-    display: block;
-    justify-content: center;
+.weather-image {
+    /* Removed the margin-top as it's commented out */
+    height: 200px; /* Fixed height of the container */
+    display: flex; /* Using flexbox to center the content */
+    justify-content: center; /* Horizontally center the content in the container */
 }
+
 
 .weather-temp{
     display: flex;
