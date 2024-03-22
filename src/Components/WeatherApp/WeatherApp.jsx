@@ -4,15 +4,15 @@ import './WeatherApp.css'
 import search_icon from "../Assets/search.png";
 import wind_icon from "../Assets/wind.png";
 import humidity_icon from "../Assets/humidity.png";
-import clear_sky from "../Assets/01d@2x.png";
-import few_clouds from "../Assets/02d@2x.png";
-import scattered_clouds from "../Assets/03d@2x.png";
-import broken_clouds from "../Assets/04d@2x.png";
-import shower_rain from "../Assets/09d@2x.png";
-import rain from "../Assets/10d@2x.png";
-import thunderstorm from "../Assets/11d@2x.png";
-import snow from "../Assets/13d@2x.png";
-import mist from "../Assets/50d@2x.png";
+import clear_sky from "../Assets/01d.svg";
+import few_clouds from "../Assets/02d.svg";
+import scattered_clouds from "../Assets/03d.svg";
+import broken_clouds from "../Assets/04d.svg";
+import shower_rain from "../Assets/09d.svg";
+import rain from "../Assets/10d.svg";
+import thunderstorm from "../Assets/11d.svg";
+import snow from "../Assets/13d.svg";
+import mist from "../Assets/50d.svg";
 
 var center = {
     lat: 7.2905715, // default latitude
