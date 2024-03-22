@@ -41,7 +41,7 @@
 }
 
 .weather-image {
-    /* Removed the margin-top as it's commented out */
+    margin-top: 20px;
     height: 200px; /* Fixed height of the container */
     display: flex; /* Using flexbox to center the content */
     justify-content: center; /* Horizontally center the content in the container */
@@ -94,7 +94,6 @@
 }
 
 .map-container {
-    height: 200px;
-    width: 607px; /* Same width as your container to keep it consistent */
     margin-top: 20px;
+    width: 607px;
 }

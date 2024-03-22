@@ -155,7 +155,10 @@ export const WeatherApp = () => {
                     <div className="text">Ressenti</div>
                 </div>
             </div>
-            {/* <MapComponent/> */}
+            
+        </div>
+        <div className="map-container">
+            <MapComponent/>
         </div>
     </div>
   )
