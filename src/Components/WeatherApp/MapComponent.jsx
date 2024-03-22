@@ -35,7 +35,7 @@ function MapComponent() {
     setClickPosition({ lat, lng });
 
     try {
-      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`);
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=`);
       const data = await response.json();
       if (data.results && data.results[0]) {
         const city = data.results[0].address_components.find(component =>
