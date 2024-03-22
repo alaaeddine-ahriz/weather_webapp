@@ -1,4 +1,4 @@
-.container{
+.weatherapp-container{
     width: 720px;
     height: 1600px;
     margin: auto;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.top-bar{
+.weatherapp-top-bar{
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -14,7 +14,7 @@
 
 }
 
-.top-bar input{
+.weatherapp-top-bar input{
     display: flex;
     width: 360px;
     height: 60px;
@@ -31,7 +31,7 @@
     font-weight: 400;
 }
 
-.search-icon{
+.weatherapp-search-icon{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,7 +45,7 @@
     cursor: pointer;
 }
 
-.weather-image {
+.weatherapp-weather-image {
     margin-top: 40px;
     height: 200px; /* Fixed height of the container */
     display: flex; /* Using flexbox to center the content */
@@ -53,7 +53,7 @@
 }
 
 
-.weather-temp{
+.weatherapp-weather-temp{
     display: flex;
     justify-content: center;
     color: white;
@@ -61,7 +61,7 @@
     font-weight: 400;
 }
 
-.weather-location{
+.weatherapp-weather-location{
     display: flex;
     justify-content: center;
     color: white;
@@ -70,7 +70,7 @@
     font-weight: 400;
 }
 
-.data-container{
+.weatherapp-data-container{
     margin-top: 10px;
     color: white;
     display: flex;
@@ -81,7 +81,7 @@
     justify-content: center;
 }
 
-.element{
+.weatherapp-element{
     margin: auto;
     display: flex;
     align-items: flex-start;
@@ -102,7 +102,7 @@
     margin-top: 0px;
 }
 
-.map-container {
+.weatherapp-map-container {
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 60px; 

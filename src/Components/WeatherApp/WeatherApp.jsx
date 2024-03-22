@@ -126,37 +126,37 @@ export const WeatherApp = () => {
     }
 
   return (
-    <div className='container'>
+    <div className='weatherapp-container'>
         <div className="header">
             <Header/>
         </div>
-        <div className="top-bar">
+        <div className="weatherapp-top-bar">
             <input type="text" className="cityInput" placeholder='Search'/>
-            <div className="search-icon" onClick={()=>{search()}}>
+            <div className="weatherapp-search-icon" onClick={()=>{search()}}>
                 <img src={search_icon} alt="" />
             </div>
         </div>
-        <div className="weather-image">
+        <div className="weatherapp-weather-image">
             <img src={wicon} alt="" />
         </div>
-        <div className="weather-temp">20°</div>
-        <div className="weather-location">Villeurbanne</div>
-        <div className="data-container">
-            <div className="element">
+        <div className="weatherapp-weather-temp">20°</div>
+        <div className="weatherapp-weather-location">Villeurbanne</div>
+        <div className="weatherapp-data-container">
+            <div className="weatherapp-element">
                 <img src={humidity_icon} alt="" className='icon'/>
                 <div className="data">
                     <div className="humidity-percent">50%</div>
                     <div className="text">Humidité</div>
                 </div>
             </div>
-            <div className="element">
+            <div className="weatherapp-element">
                 <img src={wind_icon} alt="" className='icon'/>
                 <div className="data">
                     <div className="wind-speed">15 km/h</div>
                     <div className="text">Vents</div>
                 </div>
             </div>
-            <div className="element">
+            <div className="weatherapp-element">
                 <img src={wind_icon} alt="" className='icon'/>
                 <div className="data">
                     <div className="feels-like">20°</div>
@@ -165,7 +165,7 @@ export const WeatherApp = () => {
             </div>
             
         </div>
-        <div className="map-container">
+        <div className="weatherapp-map-container">
             <MapComponent/>
         </div>
     </div>
