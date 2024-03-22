@@ -145,6 +145,13 @@ export const WeatherApp = () => {
                     <div className="text">Vents</div>
                 </div>
             </div>
+            <div className="element">
+                <img src={wind_icon} alt="" className='icon'/>
+                <div className="data">
+                    <div className="wind-speed">15 km/h</div>
+                    <div className="text">Vents</div>
+                </div>
+            </div>
         </div>
     </div>
   )
