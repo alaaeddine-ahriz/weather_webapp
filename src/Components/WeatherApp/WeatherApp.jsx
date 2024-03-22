@@ -60,7 +60,7 @@ export const WeatherApp = () => {
         let response = await fetch(url);
         let data = await response.json();
 
-        setMinMaxTemp({ min: Math.floor(data.main.temp_min), max: Math.floor(data.main.temp_max) });
+        // setMinMaxTemp({ min: Math.floor(data.main.temp_min), max: Math.floor(data.main.temp_max) });
 
         const humidity = document.getElementsByClassName("humidity-percent");
         const wind = document.getElementsByClassName("wind-speed");
@@ -143,7 +143,7 @@ export const WeatherApp = () => {
         </div>
         <div className="weather-temp">20°</div>
         <div className="weather-location">Villeurbanne</div>
-        <div className="min-max-temp">H:{minMaxTemp.min}° | L:{minMaxTemp.max}°</div>
+        {/* <div className="min-max-temp">H:{minMaxTemp.min}° | L:{minMaxTemp.max}°</div> */}
         <div className="data-container">
             <div className="element">
                 <img src={humidity_icon} alt="" className='icon'/>
