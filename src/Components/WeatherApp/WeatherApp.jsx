@@ -28,7 +28,7 @@ export const WeatherApp = () => {
 
     let api_key = "41ad9850d25b95de0ec5b350ddd03b16";
 
-    const [wicon,setWicon] = useState(few_clouds);
+    const [wicon,setWicon] = useState(clear_sky);
     const [coords, setCoords] = useState([90, 90]);
 
     const search = async ( ) => {
