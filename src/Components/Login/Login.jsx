@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import './Login.css'
+import { Header } from "../WeatherApp/HeaderComponent"
+
 
 
 function Login() {
@@ -28,9 +30,12 @@ function Login() {
 
     return(
       <div className='login-container'>
+        {/* <div className="login-header">
+            <Header/>
+        </div> */}
       <div className='login-form'>
-        <h2 className="login">
-          Se connecter
+        <h2 className="login-seconnecter-titre">
+          Ravis de vous revoir
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="login-element">
@@ -63,7 +68,7 @@ function Login() {
           </button>
           </form>
           <p>Already Have an Account</p>
-          <Link to="/register">
+          <Link to="/">
             Sign Up
           </Link>
         
