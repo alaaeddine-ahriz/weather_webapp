@@ -5,8 +5,8 @@ import { center } from './WeatherApp.jsx'
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  width: '100vw',
-  height: '100vh',
+  width: '700px',
+  height: '400px',
 };
 
 export { MapComponent };

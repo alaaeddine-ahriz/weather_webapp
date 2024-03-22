@@ -1,6 +1,6 @@
 .container{
-    width: 607px;
-    height: 729px;
+    width: 700px;
+    height: 750px;
     margin: auto;
     margin-top: 75px;
     border-radius: 20px;
@@ -94,6 +94,7 @@
 }
 
 .map-container {
-    margin-top: 20px;
+    margin-top: 50px;
     width: 607px;
+    align-items: center;
 }
