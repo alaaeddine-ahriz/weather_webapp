@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { MapComponent } from "./MapComponent.jsx"
+import { Header } from "./HeaderComponent.jsx"
+
 import './WeatherApp.css'
 
 import search_icon from "../Assets/search.png";
@@ -122,6 +124,9 @@ export const WeatherApp = () => {
 
   return (
     <div className='container'>
+        <div className="header">
+            <Header/>
+        </div>
         <div className="top-bar">
             <input type="text" className="cityInput" placeholder='Search'/>
             <div className="search-icon" onClick={()=>{search()}}>

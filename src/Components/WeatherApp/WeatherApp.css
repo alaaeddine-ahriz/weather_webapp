@@ -2,7 +2,7 @@
     width: 720px;
     height: 1600px;
     margin: auto;
-    background-image: linear-gradient(180deg, #130754 0%,#3b2f80 100%);
+    background-image: linear-gradient(150deg, #130754 0%,#3b2f80 100%);
     align-items: center;
 }
 
@@ -10,13 +10,13 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding-top: 50px;
+    padding-top: 70px;
 
 }
 
 .top-bar input{
     display: flex;
-    width: 362px;
+    width: 360px;
     height: 60px;
     background: white;
     border: none;

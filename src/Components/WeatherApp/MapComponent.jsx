@@ -6,7 +6,7 @@ import { center } from './WeatherApp.jsx'
 const libraries = ['places'];
 const mapContainerStyle = {
   width: '680px',
-  height: '800px',
+  height: '760px',
   borderRadius: '20px', // Add this line to set the border radius
   overflow: 'hidden', // This ensures that the map corners are clipped to the border radius
 };
