@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import { center } from './Components/WeatherApp/WeatherApp.jsx'
+import { center } from './WeatherApp.jsx'
 
 
 const libraries = ['places'];
@@ -9,6 +9,7 @@ const mapContainerStyle = {
   height: '100vh',
 };
 
+export { Mapp };
 
 function Mapp() {
   const [clickPosition, setClickPosition] = useState(null);
