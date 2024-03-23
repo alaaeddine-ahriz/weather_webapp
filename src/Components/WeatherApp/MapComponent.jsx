@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import { center } from './WeatherApp.jsx'
-
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -62,6 +60,7 @@ function MapComponent({ center }) {
           zoom={15}
           center={center}
           onClick={handleClick}
+          mapTypeId="terrain"
         >
           {clickPosition && (
           <Marker position={{ lat: clickPosition.lat, lng: clickPosition.lng }} />
