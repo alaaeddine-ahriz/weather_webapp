@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { MapComponent } from "./MapComponent.jsx"
-import { Header } from "./HeaderComponent.jsx"
+import React, { useState } from 'react';
+import MapComponent from "./MapComponent";
+import { Header } from "./HeaderComponent";
+import './WeatherApp.css';
 
-import './WeatherApp.css'
-
+// Importing images and icons
 import search_icon from "../Assets/search.png";
 import wind_icon from "../Assets/wind.png";
 import humidity_icon from "../Assets/humidity.png";
@@ -17,157 +17,123 @@ import thunderstorm from "../Assets/11d.svg";
 import snow from "../Assets/13d.svg";
 import mist from "../Assets/50d.svg";
 
-var center = {
-    lat: 7.2905715, // default latitude
-    lng: 80.6337262, // default longitude
-  };
-  
-export { center};
+export const center = {
+    lat: 7.2905715,
+    lng: 80.6337262,
+};
 
 export const WeatherApp = () => {
+  const [wicon, setWicon] = useState(clear_sky);
+  const [center, setCenter] = useState({
+    lat: 7.2905715, // Default latitude
+    lng: 80.6337262, // Default longitude
+  });
+  const [weatherData, setWeatherData] = useState({
+    humidity: '-%',
+    windSpeed: '-km/h',
+    temp: '-°',
+    feelsLike: '-°',
+    location: 'Villeurbanne', // Default location
+  });
 
-    const position = [51.505, -0.09]
+  const api_key = "41ad9850d25b95de0ec5b350ddd03b16";
 
-    let api_key = "41ad9850d25b95de0ec5b350ddd03b16";
+  const search = async () => {
+    const inputElement = document.querySelector(".cityInput");
+    const city = inputElement.value;
 
-    const [wicon,setWicon] = useState(clear_sky);
-    const [coords, setCoords] = useState([90, 90]);
-
-    const search = async ( ) => {
-        const element = document.getElementsByClassName("cityInput");
-        if(element[0].value==="")
-        {
-            alert("Please enter a city name."); // Or handle this case in a more user-friendly way
-            return;
-        }
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${api_key}`;
-
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${element[0].value}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.results && data.results.length > 0) {
-            const location = data.results[0].geometry.location;
-            center = {lat: location.lat, lng: location.lng};
-          } else {
-            console.error('Aucun résultat trouvé pour la ville spécifiée.');
-          }
-        })
-        .catch(error => {
-          console.error('Une erreur s\'est produite lors de la récupération des coordonnées :', error);
-        });
-
-        
-        let response = await fetch(url);
-        let data = await response.json();
-
-        const humidity = document.getElementsByClassName("humidity-percent");
-        const wind = document.getElementsByClassName("wind-speed");
-        const feels_like = document.getElementsByClassName("feels-like")
-        const temperature = document.getElementsByClassName("weather-temp");
-        const location = document.getElementsByClassName("weather-location");
-
-        humidity[0].innerHTML = Math.floor(data.main.humidity)+" %";
-        wind[0].innerHTML = Math.floor(data.wind.speed)+" km/h";
-        temperature[0].innerHTML = Math.floor(data.main.temp)+"°";
-        feels_like[0].innerHTML = Math.floor(data.main.feels_like)+"°";
-        location[0].innerHTML = data.name;
-
-        setCoords([data.coord.lat, data.coord.lon]);
-
-        if(data.weather[0].icon==="01d" || data.weather[0].icon==="01n")
-        {
-            setWicon(clear_sky);
-        }
-        
-        else if(data.weather[0].icon==="02d" || data.weather[0].icon==="02n")
-        {
-            setWicon(few_clouds);
-        }
-
-        else if(data.weather[0].icon==="03d" || data.weather[0].icon==="03n")
-        {
-            setWicon(scattered_clouds);
-        }
-
-        else if(data.weather[0].icon==="04d" || data.weather[0].icon==="04n")
-        {
-            setWicon(broken_clouds);
-        }
-
-        else if(data.weather[0].icon==="09d" || data.weather[0].icon==="09n")
-        {
-            setWicon(shower_rain);
-        }
-
-        else if(data.weather[0].icon==="10d" || data.weather[0].icon==="10n")
-        {
-            setWicon(rain);
-        }
-
-        else if(data.weather[0].icon==="11d" || data.weather[0].icon==="11n")
-        {
-            setWicon(thunderstorm);
-        }
-
-        else if(data.weather[0].icon==="13d" || data.weather[0].icon==="13n")
-        {
-            setWicon(snow);
-        }
-
-        else if(data.weather[0].icon==="50d" || data.weather[0].icon==="50n")
-        {
-            setWicon(mist);
-        }
-
-        else
-        {
-            setWicon(clear_sky);
-        }
+    if (city === "") {
+      alert("Please enter a city name.");
+      return;
     }
+
+    try {
+      // Fetch weather data
+      let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key}`);
+      if (!response.ok) throw new Error("Weather data fetch failed");
+      let data = await response.json();
+
+      // Update state with the fetched data
+      setWeatherData({
+        humidity: Math.floor(data.main.humidity) + "%",
+        windSpeed: Math.floor(data.wind.speed) + " km/h",
+        temp: Math.floor(data.main.temp) + "°",
+        feelsLike: Math.floor(data.main.feels_like) + "°",
+        location: data.name,
+      });
+
+      // Update the weather icon based on the weather condition
+      const weatherIconMap = {
+        "01d": clear_sky,
+        "02d": few_clouds,
+        "03d": scattered_clouds,
+        "04d": broken_clouds,
+        "09d": shower_rain,
+        "10d": rain,
+        "11d": thunderstorm,
+        "13d": snow,
+        "50d": mist,
+      };
+      setWicon(weatherIconMap[data.weather[0].icon] || clear_sky);
+
+      // Fetch geocode data
+      const geoResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`);
+      const geoData = await geoResponse.json();
+      
+      if (geoData.results && geoData.results.length > 0) {
+        const location = geoData.results[0].geometry.location;
+        setCenter({ lat: location.lat, lng: location.lng }); // Update center state
+      } else {
+        console.error('No results found for the specified city.');
+      }
+
+    } catch (error) {
+      console.error("Failed to fetch weather data:", error);
+    }
+  };
 
   return (
     <div className='weatherapp-container'>
-        <div className="header">
+       <div className="header">
             <Header/>
         </div>
-        <div className="weatherapp-top-bar">
-            <input type="text" className="cityInput" placeholder='Search'/>
-            <div className="weatherapp-search-icon" onClick={()=>{search()}}>
-                <img src={search_icon} alt="" />
-            </div>
+      <div className="weatherapp-top-bar">
+        <input type="text" className="cityInput" placeholder='Search'/>
+        <div className="weatherapp-search-icon" onClick={search}>
+          <img src={search_icon} alt="Search" />
         </div>
-        <div className="weatherapp-weather-image">
-            <img src={wicon} alt="" />
+      </div>
+      <div className="weatherapp-weather-image">
+        <img src={wicon} alt="Weather" />
+      </div>
+      <div className="weatherapp-weather-temp">{weatherData.temp}</div>
+      <div className="weatherapp-weather-location">{weatherData.location}</div>
+      <div className="weatherapp-data-container">
+        <div className="weatherapp-element">
+          <img src={humidity_icon} alt="Humidity" className='icon'/>
+          <div className="data">
+            <div className="humidity-percent">{weatherData.humidity}</div>
+            <div className="text">Humidity</div>
+          </div>
         </div>
-        <div className="weatherapp-weather-temp">20°</div>
-        <div className="weatherapp-weather-location">Villeurbanne</div>
-        <div className="weatherapp-data-container">
-            <div className="weatherapp-element">
-                <img src={humidity_icon} alt="" className='icon'/>
-                <div className="data">
-                    <div className="humidity-percent">50%</div>
-                    <div className="text">Humidité</div>
-                </div>
-            </div>
-            <div className="weatherapp-element">
-                <img src={wind_icon} alt="" className='icon'/>
-                <div className="data">
-                    <div className="wind-speed">15 km/h</div>
-                    <div className="text">Vents</div>
-                </div>
-            </div>
-            <div className="weatherapp-element">
-                <img src={wind_icon} alt="" className='icon'/>
-                <div className="data">
-                    <div className="feels-like">20°</div>
-                    <div className="text">Ressenti</div>
-                </div>
-            </div>
-            
+        <div className="weatherapp-element">
+          <img src={wind_icon} alt="Wind Speed" className='icon'/>
+          <div className="data">
+            <div className="wind-speed">{weatherData.windSpeed}</div>
+            <div className="text">Wind</div>
+          </div>
         </div>
-        <div className="weatherapp-map-container">
-            <MapComponent/>
+        <div className="weatherapp-element">
+          <img src={wind_icon} alt="Feels Like" className='icon'/>
+          <div className="data">
+            <div className="feels-like">{weatherData.feelsLike}</div>
+            <div className="text">Feels Like</div>
+          </div>
         </div>
+      </div>
+      <div className="weatherapp-map-container">
+        <MapComponent center={center}/>
+      </div>
     </div>
-  )
-}
+  );
+};

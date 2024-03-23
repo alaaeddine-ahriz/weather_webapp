@@ -12,9 +12,9 @@ const mapContainerStyle = {
 };
 
 
-export { MapComponent };
+export default MapComponent ;
 
-function MapComponent() {
+function MapComponent({ center }) {
   const [clickPosition, setClickPosition] = useState(null);
   const [cityName, setCityName] = useState('');
 
