@@ -24,8 +24,10 @@
   height: 50px;
   border-radius: 50%; /* This will make the container circular */
   overflow: hidden;
+  background-color: rgb(85, 85, 85);
   
 }
+
 
 .profile-image{
     display: flex;
