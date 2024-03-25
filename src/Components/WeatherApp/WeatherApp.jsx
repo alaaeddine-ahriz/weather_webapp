@@ -66,7 +66,7 @@ export const WeatherApp = () => {
           "03d": clearSkyVideo,
           "04d": clearSkyVideo,
           "09d": clearSkyVideo,
-          "10d": rainVideo,
+          "10d": clearSkyVideo,
           "11d": clearSkyVideo,
           "13d": snowVideo,
           "50d": mistVideo,
