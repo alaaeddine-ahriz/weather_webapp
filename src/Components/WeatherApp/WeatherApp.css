@@ -17,15 +17,12 @@
 
 .weatherapp-top-bar input{
     display: flex;
-    width: 360px;
-    height: 88px;
+    width: 450px;
+    height: 90px;
     background: white;
     border: none;
     outline: none;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 10px;
+    border-radius: 60px;
     padding-left: 40px;
     color: grey;
     font-size: 30px;

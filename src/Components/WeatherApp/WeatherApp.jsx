@@ -72,7 +72,7 @@ export const WeatherApp = () => {
           "50d": mistVideo,
         };
         // setWicon(weatherIconMap[data.weather[0].icon] || clear_sky);
-        setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || thunderstormVideo);
+        setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clearSkyVideo);
 
         const geoResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`);
         const geoData = await geoResponse.json();
@@ -121,10 +121,11 @@ export const WeatherApp = () => {
             <Header/>
         </div> */}
       <div className="weatherapp-top-bar">
-        <input type="text" className="cityInput" placeholder='Search'/>
-        <div className="weatherapp-search-icon" onClick={search}>
+        {/* <input type="text" className="cityInput" placeholder='Search'/> */}
+        <input type="text" className="cityInput" placeholder='Ville' onKeyDown={search} />
+        {/* <div className="weatherapp-search-icon" onClick={search}>
           <img src={search_icon} alt="Search" />
-        </div>
+        </div> */}
       </div>
       {/* <div className="weatherapp-weather-image">
         <img src={wicon} alt="Weather" />
