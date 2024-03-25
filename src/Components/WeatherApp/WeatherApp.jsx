@@ -17,6 +17,10 @@ import thunderstorm from "../Assets/11d.svg";
 import snow from "../Assets/13d.svg";
 import mist from "../Assets/50d.svg";
 
+import clearSkyVideo from "../Assets/clear_sky.mp4";
+import thunderstormVideo from "../Assets/thunderstorm.mp4";
+
+
 export const center = {
     lat: 7.2905715,
     lng: 80.6337262,
@@ -30,13 +34,16 @@ export const WeatherApp = () => {
     });
     const [weatherData, setWeatherData] = useState({
       humidity: '-%',
-      windSpeed: '-km/h',
+       windSpeed: '-kph',
       temp: '-°',
       feelsLike: '-°',
       location: 'Villeurbanne', // Default location
     });
 
     const api_key = "41ad9850d25b95de0ec5b350ddd03b16";
+
+    const [backgroundVideo, setBackgroundVideo] = useState(clearSkyVideo);
+    
   
     const fetchWeatherAndGeocodeData = async (city) => {
       try {
@@ -46,24 +53,25 @@ export const WeatherApp = () => {
 
         setWeatherData({
           humidity: `${Math.floor(data.main.humidity)}%`,
-          windSpeed: `${Math.floor(data.wind.speed)} km/h`,
+          windSpeed: `${Math.floor(data.wind.speed)}kph`,
           temp: `${Math.floor(data.main.temp)}°`,
           feelsLike: `${Math.floor(data.main.feels_like)}°`,
           location: data.name,
         });
 
-        const weatherIconMap = {
-          "01d": clear_sky,
-          "02d": few_clouds,
-          "03d": scattered_clouds,
-          "04d": broken_clouds,
-          "09d": shower_rain,
-          "10d": rain,
-          "11d": thunderstorm,
-          "13d": snow,
-          "50d": mist,
+
+        const weatherVideoMap = {
+          "01d": clearSkyVideo,
+          "02d": thunderstormVideo,
+          "03d": thunderstormVideo,
+          "04d": thunderstormVideo,
+          "09d": thunderstormVideo,
+          "10d": thunderstormVideo,
+          "11d": thunderstormVideo,
+          "13d": thunderstormVideo,
+          "50d": thunderstormVideo,
         };
-        setWicon(weatherIconMap[data.weather[0].icon] || clear_sky);
+        setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clearSkyVideo); // Default to clearSkyVideo if no match
 
         const geoResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`);
         const geoData = await geoResponse.json();
@@ -97,40 +105,54 @@ export const WeatherApp = () => {
 
     return (
     <div className='weatherapp-container'>
-       <div className="header">
+      <video autoPlay loop muted style={{
+        position: "absolute",
+        width: "100%",
+        left: "0",
+        top: "0",
+        height: "100%",
+        objectFit: "cover",
+        zIndex: "-1" /* Ensures the video stays in the background */
+      }}>
+        <source src={backgroundVideo} type="video/mp4"/>
+      </video>
+       {/* <div className="header">
             <Header/>
-        </div>
+        </div> */}
       <div className="weatherapp-top-bar">
         <input type="text" className="cityInput" placeholder='Search'/>
         <div className="weatherapp-search-icon" onClick={search}>
           <img src={search_icon} alt="Search" />
         </div>
       </div>
-      <div className="weatherapp-weather-image">
+      {/* <div className="weatherapp-weather-image">
         <img src={wicon} alt="Weather" />
-      </div>
+      </div> */}
       <div className="weatherapp-weather-temp">{weatherData.temp}</div>
       <div className="weatherapp-weather-location">{weatherData.location}</div>
       <div className="weatherapp-data-container">
         <div className="weatherapp-element">
-          <img src={humidity_icon} alt="Humidity" className='icon'/>
+          {/* <img src={humidity_icon} alt="Humidity" className='icon'/> */}
           <div className="data">
-            <div className="humidity-percent">{weatherData.humidity}</div>
+            
             <div className="text">Humidité</div>
+            <div className="humidity-percent">{weatherData.humidity}</div>
           </div>
         </div>
         <div className="weatherapp-element">
-          <img src={wind_icon} alt="Wind Speed" className='icon'/>
+          {/* <img src={wind_icon} alt="Wind Speed" className='icon'/> */}
           <div className="data">
-            <div className="wind-speed">{weatherData.windSpeed}</div>
+            
             <div className="text">Vent</div>
+            <div className="wind-speed">{weatherData.windSpeed}</div>
           </div>
         </div>
         <div className="weatherapp-element">
-          <img src={wind_icon} alt="Feels Like" className='icon'/>
+          {/* <img src={wind_icon} alt="Feels Like" className='icon'/> */}
           <div className="data">
-            <div className="feels-like">{weatherData.feelsLike}</div>
+            
             <div className="text">Ressenti</div>
+            <div className="feels-like">{weatherData.feelsLike}</div>
           </div>
         </div>
       </div>

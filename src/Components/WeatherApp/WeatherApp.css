@@ -1,9 +1,10 @@
 .weatherapp-container{
+    position: relative;
     width: 720px;
     height: 1600px;
     margin: auto;
-    background-image: linear-gradient(150deg, #130754 0%,#3b2f80 100%);
     align-items: center;
+    overflow: hidden; /* Keeps the video within the bounds of the container */
 }
 
 .weatherapp-top-bar{
@@ -17,17 +18,17 @@
 .weatherapp-top-bar input{
     display: flex;
     width: 360px;
-    height: 60px;
+    height: 88px;
     background: white;
     border: none;
     outline: none;
-    border-top-left-radius: 30px;
+    border-top-left-radius: 50px;
     border-top-right-radius: 10px;
-    border-bottom-left-radius: 30px;
+    border-bottom-left-radius: 50px;
     border-bottom-right-radius: 10px;
     padding-left: 40px;
     color: grey;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 400;
 }
 
@@ -35,19 +36,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80px;
-    height: 62px;
+    width: 100px;
+    height: 90px;
     background: white;
     border-top-left-radius: 10px;
-    border-top-right-radius: 30px;
+    border-top-right-radius: 50px;
     border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 30px;
+    border-bottom-right-radius: 50px;
     cursor: pointer;
 }
 
 .weatherapp-weather-image {
     margin-top: 40px;
-    height: 200px; /* Fixed height of the container */
+    height: 300px; /* Fixed height of the container */
     display: flex; /* Using flexbox to center the content */
     justify-content: center; /* Horizontally center the content in the container */
 }
@@ -56,9 +57,10 @@
 .weatherapp-weather-temp{
     display: flex;
     justify-content: center;
+    margin-top: 30px;
     color: white;
-    font-size: 100px;
-    font-weight: 400;
+    font-size: 150px;
+    font-weight: 600;
 }
 
 .weatherapp-weather-location{
@@ -66,8 +68,8 @@
     justify-content: center;
     color: white;
     margin-bottom: 80px;
-    font-size: 30px;
-    font-weight: 400;
+    font-size: 50px;
+    font-weight: 600;
 }
 
 .weatherapp-data-container{
@@ -89,13 +91,13 @@
 }
 
 .data{
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 40px;
+    font-weight: 600;
 }
 
 .text{
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 30px;
+    font-weight: 500;
 }
 
 .icon{
@@ -106,5 +108,14 @@
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 60px; 
+  }
+
+  .weatherapp-weather-temp, 
+  .weatherapp-weather-location, 
+  .weatherapp-element .text, 
+  .weatherapp-element .feels-like, 
+  .weatherapp-data-container .data, 
+  .weatherapp-data-container .text {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 50);
   }
   

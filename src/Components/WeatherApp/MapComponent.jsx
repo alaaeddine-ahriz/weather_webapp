@@ -4,8 +4,8 @@ import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 const libraries = ['places'];
 const mapContainerStyle = {
   width: '680px',
-  height: '760px',
-  borderRadius: '20px', // Add this line to set the border radius
+  height: '890px',
+  borderRadius: '10px', // Add this line to set the border radius
   overflow: 'hidden', // This ensures that the map corners are clipped to the border radius
 };
 
@@ -15,7 +15,6 @@ export default MapComponent ;
 function MapComponent({ center }) {
   const [clickPosition, setClickPosition] = useState(null);
   const [cityName, setCityName] = useState('');
-
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps',
