@@ -16,10 +16,8 @@ import rain from "../Assets/10d.svg";
 import thunderstorm from "../Assets/11d.svg";
 import snow from "../Assets/13d.svg";
 import mist from "../Assets/50d.svg";
-
 import clearSkyVideo from "../Assets/clear_sky.mp4";
-import thunderstormVideo from "../Assets/thunderstorm.mp4";
-
+import thunderstormVideo from "../Assets/thunderstorm.mp4"
 
 export const center = {
     lat: 7.2905715,
@@ -27,23 +25,21 @@ export const center = {
 };
 
 export const WeatherApp = () => {
-    const [wicon, setWicon] = useState(clear_sky);
+    // const [wicon, setWicon] = useState(clear_sky);
+    const [backgroundVideo, setBackgroundVideo] = useState(clearSkyVideo);
     const [center, setCenter] = useState({
       lat: 7.2905715, // Default latitude
       lng: 80.6337262, // Default longitude
     });
     const [weatherData, setWeatherData] = useState({
       humidity: '-%',
-       windSpeed: '-kph',
+      windSpeed: '-km/h',
       temp: '-°',
       feelsLike: '-°',
       location: 'Villeurbanne', // Default location
     });
 
     const api_key = "41ad9850d25b95de0ec5b350ddd03b16";
-
-    const [backgroundVideo, setBackgroundVideo] = useState(clearSkyVideo);
-    
   
     const fetchWeatherAndGeocodeData = async (city) => {
       try {
@@ -53,16 +49,16 @@ export const WeatherApp = () => {
 
         setWeatherData({
           humidity: `${Math.floor(data.main.humidity)}%`,
-          windSpeed: `${Math.floor(data.wind.speed)}kph`,
+          windSpeed: `${Math.floor(data.wind.speed)} km/h`,
           temp: `${Math.floor(data.main.temp)}°`,
           feelsLike: `${Math.floor(data.main.feels_like)}°`,
           location: data.name,
         });
-
-
+        
+        // const weatherIconMap = {
         const weatherVideoMap = {
           "01d": clearSkyVideo,
-          "02d": thunderstormVideo,
+          "02d": clearSkyVideo,
           "03d": thunderstormVideo,
           "04d": thunderstormVideo,
           "09d": thunderstormVideo,
@@ -71,6 +67,7 @@ export const WeatherApp = () => {
           "13d": thunderstormVideo,
           "50d": thunderstormVideo,
         };
+        // setWicon(weatherIconMap[data.weather[0].icon] || clear_sky);
         setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clearSkyVideo); // Default to clearSkyVideo if no match
 
         const geoResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`);
@@ -105,7 +102,7 @@ export const WeatherApp = () => {
 
     return (
     <div className='weatherapp-container'>
-      <video autoPlay loop muted style={{
+        <video autoPlay loop muted style={{
         position: "absolute",
         width: "100%",
         left: "0",
@@ -134,25 +131,22 @@ export const WeatherApp = () => {
         <div className="weatherapp-element">
           {/* <img src={humidity_icon} alt="Humidity" className='icon'/> */}
           <div className="data">
-            
-            <div className="text">Humidité</div>
             <div className="humidity-percent">{weatherData.humidity}</div>
+            <div className="text">Humidité</div>
           </div>
         </div>
         <div className="weatherapp-element">
           {/* <img src={wind_icon} alt="Wind Speed" className='icon'/> */}
           <div className="data">
-            
-            <div className="text">Vent</div>
             <div className="wind-speed">{weatherData.windSpeed}</div>
+            <div className="text">Vent</div>
           </div>
         </div>
         <div className="weatherapp-element">
           {/* <img src={wind_icon} alt="Feels Like" className='icon'/> */}
           <div className="data">
-            
-            <div className="text">Ressenti</div>
             <div className="feels-like">{weatherData.feelsLike}</div>
+            <div className="text">Ressenti</div>
           </div>
         </div>
       </div>
