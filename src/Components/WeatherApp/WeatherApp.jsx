@@ -36,7 +36,7 @@ export const WeatherApp = () => {
       windSpeed: '-km/h',
       temp: '-°',
       feelsLike: '-°',
-      location: 'Villeurbanne', // Default location
+      location: 'Villeurbanne',
     });
 
     const api_key = "41ad9850d25b95de0ec5b350ddd03b16";
@@ -58,7 +58,7 @@ export const WeatherApp = () => {
         // const weatherIconMap = {
         const weatherVideoMap = {
           "01d": clearSkyVideo,
-          "02d": clearSkyVideo,
+          "02d": thunderstormVideo,
           "03d": thunderstormVideo,
           "04d": thunderstormVideo,
           "09d": thunderstormVideo,
@@ -68,7 +68,7 @@ export const WeatherApp = () => {
           "50d": thunderstormVideo,
         };
         // setWicon(weatherIconMap[data.weather[0].icon] || clear_sky);
-        setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clearSkyVideo); // Default to clearSkyVideo if no match
+        setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || thunderstormVideo);
 
         const geoResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`);
         const geoData = await geoResponse.json();
@@ -103,16 +103,16 @@ export const WeatherApp = () => {
     return (
     <div className='weatherapp-container'>
         <video autoPlay loop muted style={{
-        position: "absolute",
-        width: "100%",
-        left: "0",
-        top: "0",
-        height: "100%",
-        objectFit: "cover",
-        zIndex: "-1" /* Ensures the video stays in the background */
-      }}>
-        <source src={backgroundVideo} type="video/mp4"/>
-      </video>
+          position: "absolute",
+          width: "100%",
+          left: "0",
+          top: "0",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: "-1"
+        }} key={backgroundVideo}>
+          <source src={backgroundVideo} type="video/mp4"/>
+        </video>
        {/* <div className="header">
             <Header/>
         </div> */}
