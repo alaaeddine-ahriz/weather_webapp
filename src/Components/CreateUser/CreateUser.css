@@ -1,0 +1,76 @@
+.create-user-container {
+  width: 720px;
+  height: 1600px;
+  margin: auto;
+  background-image: linear-gradient(150deg, #130754 0%, #3b2f80 100%);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-user-form {
+  padding: 40px;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0.1, 0.1, 0.1, 0.1);
+  width: 100%;
+  max-width: 400px; /* Ensures the form isn't too wide on larger screens */
+}
+
+.create-user-title {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 40px; /* Adds some space below the heading */
+  margin-top: 50px; /* Ajoute un espace au-dessus du titre */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Adds space between form fields */
+}
+
+label {
+  display: block;
+  margin-bottom: 8px; /* Spaces the label from the input field */
+  color: #666;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 0px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px; /* Slightly larger font for readability */
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-image: linear-gradient(150deg, #130754 0%, #3b2f80 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3; /* A darker blue on hover */
+}
+
+p {
+  text-align: center;
+  margin-top: 16px; /* Adds some space above the paragraph */
+}
+
+a {
+  color: #007bff; /* Matches the button color */
+  text-decoration: none; /* Removes underline */
+}
+
+a:hover {
+  text-decoration: underline; /* Adds underline on hover for better accessibility */
+}
