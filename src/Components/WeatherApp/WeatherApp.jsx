@@ -152,7 +152,7 @@ export const WeatherApp = () => {
       <div className="weatherapp-weather-description">
         {weatherData.description}
       </div>
-      <div className="weatherapp-weathertempMinMax">
+      <div className="weatherapp-weather-tempMinMax">
         {weatherData.tempMinMax}
       </div>
       <div className="weatherapp-data-container">
