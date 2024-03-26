@@ -135,6 +135,7 @@
   }
   .weatherapp-weather-location {
     font-size: 30px; /* Smaller font size */
+    font-weight: 200;
   }
 
   .weatherapp-weather-description {

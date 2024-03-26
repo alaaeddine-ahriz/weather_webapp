@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import React, { useState } from "react";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
-const libraries = ['places'];
+const libraries = ["places"];
 const mapContainerStyle = {
-  width: '100%', // Fill the width of the parent container
-  height: '100%', // Fill the height of the parent container
+  width: "100%", // Fill the width of the parent container
+  height: "100%", // Fill the height of the parent container
 };
 
 const mapStyles = [
@@ -12,34 +12,34 @@ const mapStyles = [
     featureType: "all",
     elementType: "labels",
     stylers: [
-      { visibility: "off" } // Hides all labels
-    ]
+      { visibility: "off" }, // Hides all labels
+    ],
   },
   {
     featureType: "locality", // Specifically targeting localities, which includes cities
     elementType: "labels",
     stylers: [
-      { visibility: "on" } // Makes sure the names of the cities are visible
-    ]
+      { visibility: "on" }, // Makes sure the names of the cities are visible
+    ],
   },
   {
     featureType: "poi", // Points of interest
     elementType: "labels", // Targeting labels
     stylers: [
-      { visibility: "off" } // Hide labels for all points of interest
-    ]
+      { visibility: "off" }, // Hide labels for all points of interest
+    ],
   },
   // Add more specific styles as needed
 ];
 
-export default MapComponent ;
+export default MapComponent;
 
 function MapComponent({ center }) {
   const [clickPosition, setClickPosition] = useState(null);
-  const [cityName, setCityName] = useState('');
+  const [cityName, setCityName] = useState("");
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps',
+    googleMapsApiKey: "AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps",
     libraries,
   });
 
@@ -57,11 +57,15 @@ function MapComponent({ center }) {
     setClickPosition({ lat, lng });
 
     try {
-      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`);
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`,
+      );
       const data = await response.json();
       if (data.results && data.results[0]) {
-        const city = data.results[0].address_components.find(component =>
-          component.types.includes('locality') || component.types.includes('administrative_area_level_1')
+        const city = data.results[0].address_components.find(
+          (component) =>
+            component.types.includes("locality") ||
+            component.types.includes("administrative_area_level_1"),
         );
         if (city) {
           setCityName(city.long_name);
@@ -69,7 +73,7 @@ function MapComponent({ center }) {
         }
       }
     } catch (error) {
-      console.error('Error fetching city name:', error);
+      console.error("Error fetching city name:", error);
     }
   };
 
@@ -82,13 +86,16 @@ function MapComponent({ center }) {
         onClick={handleClick}
         mapTypeId="terrain"
         options={{
-          styles: mapStyles, // Apply the custom map styles
-          streetViewControl: true, // Optional: disables the default map UI components if desired
+          styles: mapStyles,
+          streetViewControl: true,
+          mapTypeControl: false,
           // Any other map options you want to include
         }}
       >
         {clickPosition && (
-          <Marker position={{ lat: clickPosition.lat, lng: clickPosition.lng }} />
+          <Marker
+            position={{ lat: clickPosition.lat, lng: clickPosition.lng }}
+          />
         )}
         <Marker position={center} />
       </GoogleMap>
