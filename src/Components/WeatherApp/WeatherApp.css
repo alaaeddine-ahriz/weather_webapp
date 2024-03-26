@@ -29,35 +29,39 @@
     font-weight: 400;
 }
 
-.weatherapp-search-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 90px;
-    background: white;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 50px;
-    cursor: pointer;
-}
-
 .weatherapp-weather-temp{
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 0px;
     color: white;
     font-size: 150px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .weatherapp-weather-location{
     display: flex;
     justify-content: center;
     color: white;
-    margin-bottom: 80px;
+    margin-top: 50px;
     font-size: 50px;
+    font-weight: 600;
+}
+
+.weatherapp-weather-description{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 0px;
+    font-weight: 600;
+}
+
+.weatherapp-weathertempMinMax{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 50px;
     font-weight: 600;
 }
 
@@ -113,6 +117,8 @@
   .weatherapp-weather-location, 
   .weatherapp-element .text, 
   .weatherapp-element .feels-like, 
+  .weatherapp-weather-description,
+  .weatherapp-weathertempMinMax,
   .weatherapp-data-container .data, 
   .weatherapp-data-container .text {
     text-shadow: 0 0 10px rgba(0, 0, 0, 30);

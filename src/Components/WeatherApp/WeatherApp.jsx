@@ -41,6 +41,8 @@ export const WeatherApp = () => {
     temp: "-°",
     feelsLike: "-°",
     location: "Villeurbanne",
+    description: "Overcast clouds",
+    tempMinMax: "H:-° L:-°",
   });
 
   const api_key = "41ad9850d25b95de0ec5b350ddd03b16";
@@ -59,6 +61,8 @@ export const WeatherApp = () => {
         temp: `${Math.floor(data.main.temp)}°`,
         feelsLike: `${Math.floor(data.main.feels_like)}°`,
         location: data.name,
+        description: data.weather[0].description,
+        tempMinMax: `H:${Math.floor(data.main.temp_max)}° L:${Math.floor(data.main.temp_min)}°`,
       });
 
       const weatherVideoMap = {
@@ -142,8 +146,15 @@ export const WeatherApp = () => {
           }}
         />
       </div>
-      <div className="weatherapp-weather-temp">{weatherData.temp}</div>
+
       <div className="weatherapp-weather-location">{weatherData.location}</div>
+      <div className="weatherapp-weather-temp">{weatherData.temp}</div>
+      <div className="weatherapp-weather-description">
+        {weatherData.description}
+      </div>
+      <div className="weatherapp-weathertempMinMax">
+        {weatherData.tempMinMax}
+      </div>
       <div className="weatherapp-data-container">
         <div className="weatherapp-element">
           <div className="data">
