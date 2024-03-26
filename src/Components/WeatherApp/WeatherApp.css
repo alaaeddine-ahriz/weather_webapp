@@ -132,18 +132,21 @@
   }
   .weatherapp-weather-temp {
     font-size: 100px; /* Smaller font size */
+    font-weight: 300;
   }
   .weatherapp-weather-location {
     font-size: 30px; /* Smaller font size */
-    font-weight: 200;
+    font-weight: 400;
   }
 
   .weatherapp-weather-description {
     font-size: 25px; /* Smaller font size */
+    font-weight: 400;
   }
 
   .weatherapp-weather-tempMinMax {
     font-size: 25px; /* Smaller font size */
+    font-weight: 400;
   }
   .weatherapp-data-container {
     margin-top: 10px;
@@ -167,5 +170,6 @@
   .data,
   .text {
     font-size: 20px; /* Adjust font size for better readability on smaller screens */
+    font-weight: 400;
   }
 }
