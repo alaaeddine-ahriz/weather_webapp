@@ -22,6 +22,9 @@ import fewCloudsVideo from "../Assets/few_clouds.mp4";
 import snowVideo from "../Assets/snow.mp4";
 import mistVideo from "../Assets/mist.mp4";
 
+import clearSkyImage from "../Assets/clear_sky_img.jpg";
+
+
 
 export const center = {
     lat: 7.2905715,
@@ -30,7 +33,7 @@ export const center = {
 
 export const WeatherApp = () => {
     // const [wicon, setWicon] = useState(clear_sky);
-    const [backgroundVideo, setBackgroundVideo] = useState(clearSkyVideo);
+    const [backgroundVideo, setBackgroundVideo] = useState(clearSkyImage);
     const [center, setCenter] = useState({
       lat: 7.2905715, // Default latitude
       lng: 80.6337262, // Default longitude
@@ -61,18 +64,18 @@ export const WeatherApp = () => {
         
         // const weatherIconMap = {
         const weatherVideoMap = {
-          "01d": clearSkyVideo,
-          "02d": fewCloudsVideo,
-          "03d": clearSkyVideo,
-          "04d": clearSkyVideo,
-          "09d": clearSkyVideo,
-          "10d": clearSkyVideo,
-          "11d": clearSkyVideo,
-          "13d": snowVideo,
-          "50d": mistVideo,
+          "01d": clearSkyImage,
+          "02d": clearSkyImage,
+          "03d": clearSkyImage,
+          "04d": clearSkyImage,
+          "09d": clearSkyImage,
+          "10d": clearSkyImage,
+          "11d": clearSkyImage,
+          "13d": clearSkyImage,
+          "50d": clearSkyImage,
         };
         // setWicon(weatherIconMap[data.weather[0].icon] || clear_sky);
-        setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clearSkyVideo);
+        setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clearSkyImage);
 
         const geoResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`);
         const geoData = await geoResponse.json();
@@ -96,27 +99,32 @@ export const WeatherApp = () => {
       const inputElement = document.querySelector(".cityInput");
       const city = inputElement.value;
 
+      /*
       if (city === "") {
         alert("Please enter a city name.");
         return;
       }
+      */
 
       await fetchWeatherAndGeocodeData(city); // Wait for the async operation to complete
     };
 
     return (
     <div className='weatherapp-container'>
-        <video autoPlay loop muted style={{
-          position: "absolute",
-          width: "100%",
-          left: "0",
-          top: "0",
-          height: "100%",
-          objectFit: "cover",
-          zIndex: "-1"
-        }} key={backgroundVideo}>
-          <source src={backgroundVideo} type="video/mp4"/>
-        </video>
+        <img
+          src={backgroundVideo} // Replace `backgroundImage` with your actual image source variable
+          alt="Background" // Provide a meaningful description for the image
+          style={{
+            position: "absolute",
+            width: "100%",
+            left: "0",
+            top: "0",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: "-1"
+          }}
+          key={backgroundVideo} // Replace `backgroundImage` with your actual image source variable, if you're using React keys
+        />
        {/* <div className="header">
             <Header/>
         </div> */}

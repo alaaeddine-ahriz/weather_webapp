@@ -12,7 +12,6 @@
     justify-content: center;
     gap: 10px;
     padding-top: 70px;
-
 }
 
 .weatherapp-top-bar input{
@@ -42,14 +41,6 @@
     border-bottom-right-radius: 50px;
     cursor: pointer;
 }
-
-.weatherapp-weather-image {
-    margin-top: 40px;
-    height: 300px; /* Fixed height of the container */
-    display: flex; /* Using flexbox to center the content */
-    justify-content: center; /* Horizontally center the content in the container */
-}
-
 
 .weatherapp-weather-temp{
     display: flex;
@@ -104,7 +95,7 @@
 .weatherapp-map-container {
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 60px; 
+    margin-top: 90px; 
   }
 
   .weatherapp-weather-temp, 
