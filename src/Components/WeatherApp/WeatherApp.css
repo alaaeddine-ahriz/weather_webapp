@@ -137,7 +137,7 @@
 /* Responsive adjustments */
 @media (max-width: 720px) {
   .weatherapp-top-bar input {
-    width: 40%; /* Increased width for smaller screens */
+    width: 50%; /* Increased width for smaller screens */
     height: 50px;
     font-size: 20px;
   }
