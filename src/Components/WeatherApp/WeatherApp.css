@@ -137,16 +137,14 @@
 /* Responsive adjustments */
 @media (max-width: 720px) {
   .weatherapp-top-bar input {
-    width: 60%; /* Increased width for smaller screens */
+    width: 40%; /* Increased width for smaller screens */
     height: 50px;
     font-size: 20px;
   }
-
   .weatherapp-account {
     background-color: white;
     height: 50px;
     width: 50px;
-    border-radius: 60px;
   }
   .weatherapp-weather-temp {
     font-size: 100px; /* Smaller font size */
@@ -156,12 +154,10 @@
     font-size: 30px; /* Smaller font size */
     font-weight: 500;
   }
-
   .weatherapp-weather-description {
     font-size: 25px; /* Smaller font size */
     font-weight: 500;
   }
-
   .weatherapp-weather-tempMinMax {
     font-size: 25px; /* Smaller font size */
     font-weight: 500;
