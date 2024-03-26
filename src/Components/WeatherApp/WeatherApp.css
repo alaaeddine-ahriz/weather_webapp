@@ -123,7 +123,8 @@
     .weatherapp-top-bar input {
         width: 60%; /* Increased width for smaller screens */
         height: 50px;
-        font-size: 15px; /* Smaller font size */
+        font-size: 20px;
+        
     }
     .weatherapp-weather-temp {
         font-size: 100px; /* Smaller font size */
