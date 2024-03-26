@@ -32,11 +32,10 @@ export const center = {
 };
 
 export const WeatherApp = () => {
-    // const [wicon, setWicon] = useState(clear_sky);
     const [backgroundVideo, setBackgroundVideo] = useState(clearSkyImage);
     const [center, setCenter] = useState({
-      lat: 7.2905715, // Default latitude
-      lng: 80.6337262, // Default longitude
+      lat: 7.2905715,
+      lng: 80.6337262,
     });
     const [weatherData, setWeatherData] = useState({
       humidity: '-%',
@@ -62,7 +61,6 @@ export const WeatherApp = () => {
           location: data.name,
         });
         
-        // const weatherIconMap = {
         const weatherVideoMap = {
           "01d": clearSkyImage,
           "02d": clearSkyImage,
@@ -74,7 +72,6 @@ export const WeatherApp = () => {
           "13d": clearSkyImage,
           "50d": clearSkyImage,
         };
-        // setWicon(weatherIconMap[data.weather[0].icon] || clear_sky);
         setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clearSkyImage);
 
         const geoResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`);
@@ -106,14 +103,14 @@ export const WeatherApp = () => {
       }
       */
 
-      await fetchWeatherAndGeocodeData(city); // Wait for the async operation to complete
+      await fetchWeatherAndGeocodeData(city);
     };
 
     return (
     <div className='weatherapp-container'>
         <img
-          src={backgroundVideo} // Replace `backgroundImage` with your actual image source variable
-          alt="Background" // Provide a meaningful description for the image
+          src={backgroundVideo}
+          alt="Background"
           style={{
             position: "absolute",
             width: "100%",
@@ -123,52 +120,42 @@ export const WeatherApp = () => {
             objectFit: "cover",
             zIndex: "-1"
           }}
-          key={backgroundVideo} // Replace `backgroundImage` with your actual image source variable, if you're using React keys
+          key={backgroundVideo} 
         />
        {/* <div className="header">
             <Header/>
         </div> */}
       <div className="weatherapp-top-bar">
-        {/* <input type="text" className="cityInput" placeholder='Search'/> */}
-        {/* <input type="text" className="cityInput" placeholder='Ville' onKeyDown={search} /> */}
         <input
           type="text"
           className="cityInput"
           placeholder='Ville'
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
-              search(); // Call the search function when Enter is pressed
-              e.preventDefault(); // Prevent the default action to avoid any unwanted behavior
+              search(); 
+              e.preventDefault(); 
             }
           }}
         />
 
-        {/* <div className="weatherapp-search-icon" onClick={search}>
-          <img src={search_icon} alt="Search" />
-        </div> */}
+        
       </div>
-      {/* <div className="weatherapp-weather-image">
-        <img src={wicon} alt="Weather" />
-      </div> */}
       <div className="weatherapp-weather-temp">{weatherData.temp}</div>
       <div className="weatherapp-weather-location">{weatherData.location}</div>
       <div className="weatherapp-data-container">
         <div className="weatherapp-element">
-          {/* <img src={humidity_icon} alt="Humidity" className='icon'/> */}
           <div className="data">
             <div className="humidity-percent">{weatherData.humidity}</div>
             <div className="text">Humidité</div>
           </div>
         </div>
         <div className="weatherapp-element">
-          {/* <img src={wind_icon} alt="Wind Speed" className='icon'/> */}
           <div className="data">
             <div className="wind-speed">{weatherData.windSpeed}</div>
             <div className="text">Vent</div>
           </div>
         </div>
         <div className="weatherapp-element">
-          {/* <img src={wind_icon} alt="Feels Like" className='icon'/> */}
           <div className="data">
             <div className="feels-like">{weatherData.feelsLike}</div>
             <div className="text">Ressenti</div>
