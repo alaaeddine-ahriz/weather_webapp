@@ -130,7 +130,19 @@ export const WeatherApp = () => {
         </div> */}
       <div className="weatherapp-top-bar">
         {/* <input type="text" className="cityInput" placeholder='Search'/> */}
-        <input type="text" className="cityInput" placeholder='Ville' onKeyDown={search} />
+        {/* <input type="text" className="cityInput" placeholder='Ville' onKeyDown={search} /> */}
+        <input
+          type="text"
+          className="cityInput"
+          placeholder='Ville'
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              search(); // Call the search function when Enter is pressed
+              e.preventDefault(); // Prevent the default action to avoid any unwanted behavior
+            }
+          }}
+        />
+
         {/* <div className="weatherapp-search-icon" onClick={search}>
           <img src={search_icon} alt="Search" />
         </div> */}

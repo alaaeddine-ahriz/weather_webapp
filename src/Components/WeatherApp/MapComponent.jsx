@@ -7,6 +7,30 @@ const mapContainerStyle = {
   height: '100%', // Fill the height of the parent container
 };
 
+const mapStyles = [
+  {
+    featureType: "all",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" } // Hides all labels
+    ]
+  },
+  {
+    featureType: "locality", // Specifically targeting localities, which includes cities
+    elementType: "labels",
+    stylers: [
+      { visibility: "on" } // Makes sure the names of the cities are visible
+    ]
+  },
+  {
+    featureType: "poi", // Points of interest
+    elementType: "labels", // Targeting labels
+    stylers: [
+      { visibility: "off" } // Hide labels for all points of interest
+    ]
+  },
+  // Add more specific styles as needed
+];
 
 export default MapComponent ;
 
@@ -53,10 +77,15 @@ function MapComponent({ center }) {
     <div className="mapContainer">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={15}
+        zoom={12}
         center={center}
         onClick={handleClick}
         mapTypeId="terrain"
+        options={{
+          styles: mapStyles, // Apply the custom map styles
+          streetViewControl: true, // Optional: disables the default map UI components if desired
+          // Any other map options you want to include
+        }}
       >
         {clickPosition && (
           <Marker position={{ lat: clickPosition.lat, lng: clickPosition.lng }} />

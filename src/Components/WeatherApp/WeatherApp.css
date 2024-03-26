@@ -115,7 +115,7 @@
   .weatherapp-element .feels-like, 
   .weatherapp-data-container .data, 
   .weatherapp-data-container .text {
-    text-shadow: 0 0 10px rgba(0, 0, 0, 50);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 30);
   }
   
   /* Responsive adjustments */
