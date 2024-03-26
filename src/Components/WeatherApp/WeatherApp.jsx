@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MapComponent from "./MapComponent";
+import { Link } from "react-router-dom";
+
 import { Header } from "./HeaderComponent";
 import "./WeatherApp.css";
 
@@ -21,6 +23,8 @@ import "./WeatherApp.css";
 // import fewCloudsVideo from "../Assets/few_clouds.mp4";
 // import snowVideo from "../Assets/snow.mp4";
 // import mistVideo from "../Assets/mist.mp4";
+
+import profile_image from "../Assets/profile_1.png";
 
 import clearSkyImage from "../Assets/clear_sky_img.jpg";
 
@@ -145,8 +149,16 @@ export const WeatherApp = () => {
             }
           }}
         />
+        <div className="weatherapp-account">
+          <Link to="/Login">
+            <img
+              src={profile_image}
+              alt="Profile"
+              className="weatherapp-account-image"
+            />
+          </Link>
+        </div>
       </div>
-
       <div className="weatherapp-weather-location">{weatherData.location}</div>
       <div className="weatherapp-weather-temp">{weatherData.temp}</div>
       <div className="weatherapp-weather-description">
