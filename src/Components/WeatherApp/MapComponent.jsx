@@ -3,10 +3,8 @@ import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  width: '680px',
-  height: '890px',
-  borderRadius: '10px', // Add this line to set the border radius
-  overflow: 'hidden', // This ensures that the map corners are clipped to the border radius
+  width: '100%', // Fill the width of the parent container
+  height: '100%', // Fill the height of the parent container
 };
 
 
@@ -52,20 +50,19 @@ function MapComponent({ center }) {
   };
 
   return (
-    <><div className="App">
-    </div><div>
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          zoom={15}
-          center={center}
-          onClick={handleClick}
-          mapTypeId="terrain"
-        >
-          {clickPosition && (
+    <div className="mapContainer">
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={15}
+        center={center}
+        onClick={handleClick}
+        mapTypeId="terrain"
+      >
+        {clickPosition && (
           <Marker position={{ lat: clickPosition.lat, lng: clickPosition.lng }} />
-          )}
-          <Marker position={center} />
-        </GoogleMap>
-      </div></>
+        )}
+        <Marker position={center} />
+      </GoogleMap>
+    </div>
   );
 }

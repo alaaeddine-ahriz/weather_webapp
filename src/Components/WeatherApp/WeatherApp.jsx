@@ -4,23 +4,23 @@ import { Header } from "./HeaderComponent";
 import './WeatherApp.css';
 
 // Importing images and icons
-import search_icon from "../Assets/search.png";
-import wind_icon from "../Assets/wind.png";
-import humidity_icon from "../Assets/humidity.png";
-import clear_sky from "../Assets/01d.svg";
-import few_clouds from "../Assets/02d.svg";
-import scattered_clouds from "../Assets/03d.svg";
-import broken_clouds from "../Assets/04d.svg";
-import shower_rain from "../Assets/09d.svg";
-import rain from "../Assets/10d.svg";
-import thunderstorm from "../Assets/11d.svg";
-import snow from "../Assets/13d.svg";
-import mist from "../Assets/50d.svg";
-import clearSkyVideo from "../Assets/clear_sky.mp4";
-import thunderstormVideo from "../Assets/thunderstorm.mp4";
-import fewCloudsVideo from "../Assets/few_clouds.mp4";
-import snowVideo from "../Assets/snow.mp4";
-import mistVideo from "../Assets/mist.mp4";
+// import search_icon from "../Assets/search.png";
+// import wind_icon from "../Assets/wind.png";
+// import humidity_icon from "../Assets/humidity.png";
+// import clear_sky from "../Assets/01d.svg";
+// import few_clouds from "../Assets/02d.svg";
+// import scattered_clouds from "../Assets/03d.svg";
+// import broken_clouds from "../Assets/04d.svg";
+// import shower_rain from "../Assets/09d.svg";
+// import rain from "../Assets/10d.svg";
+// import thunderstorm from "../Assets/11d.svg";
+// import snow from "../Assets/13d.svg";
+// import mist from "../Assets/50d.svg";
+// import clearSkyVideo from "../Assets/clear_sky.mp4";
+// import thunderstormVideo from "../Assets/thunderstorm.mp4";
+// import fewCloudsVideo from "../Assets/few_clouds.mp4";
+// import snowVideo from "../Assets/snow.mp4";
+// import mistVideo from "../Assets/mist.mp4";
 
 import clearSkyImage from "../Assets/clear_sky_img.jpg";
 

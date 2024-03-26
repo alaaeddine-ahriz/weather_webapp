@@ -1,6 +1,7 @@
 .weatherapp-container{
     position: relative;
-    width: 720px;
+    width: 100%;
+    max-width: 720px;
     height: 1600px;
     margin: auto;
     align-items: center;
@@ -92,11 +93,21 @@
     margin-top: 0px;
 }
 
-.weatherapp-map-container {
+
+.mapContainer {
+    width: 90%; /* Makes the map container responsive */
+    max-width: 680px; /* Max width to align with the overall design */
+    height: 500px; /* Fixed height, consider making this responsive too */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensures the map corners are clipped to the border radius */
+    margin: 30px auto; /* Center the map container */
+}
+
+/* .weatherapp-map-container {
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 90px; 
-  }
+  } */
 
   .weatherapp-weather-temp, 
   .weatherapp-weather-location, 
@@ -107,3 +118,42 @@
     text-shadow: 0 0 10px rgba(0, 0, 0, 50);
   }
   
+  /* Responsive adjustments */
+@media (max-width: 720px) {
+    .weatherapp-top-bar input {
+        width: 60%; /* Increased width for smaller screens */
+        height: 50px;
+        font-size: 15px; /* Smaller font size */
+    }
+    .weatherapp-weather-temp {
+        font-size: 100px; /* Smaller font size */
+        margin-top: 10px;
+    }
+    .weatherapp-weather-location {
+        font-size: 30px; /* Smaller font size */
+        margin-bottom: 30px;
+    }
+        
+    .weatherapp-data-container{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: white;
+        display: flex;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .weatherapp-element{
+        margin: auto;
+        display: flex;
+        align-items: flex-start;
+        gap: 1px;
+    }
+
+    .data, .text {
+        font-size: 20px; /* Adjust font size for better readability on smaller screens */
+    }
+}
