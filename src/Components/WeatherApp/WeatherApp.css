@@ -4,7 +4,7 @@
     height: 1600px;
     margin: auto;
     align-items: center;
-    overflow: hidden; /* Keeps the video within the bounds of the container */
+    overflow: hidden;
 }
 
 .weatherapp-top-bar{
