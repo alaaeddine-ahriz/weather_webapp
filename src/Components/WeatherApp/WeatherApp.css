@@ -17,9 +17,8 @@
 
 .weatherapp-top-bar input {
   display: flex;
-  width: 450px;
   height: 90px;
-  background: white;
+  /* background: white; */
   border: none;
   outline: none;
   border-radius: 10px;
@@ -54,7 +53,6 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
 }
 
 .weatherapp-account-image {
