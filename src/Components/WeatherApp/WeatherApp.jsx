@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MapComponent from "./MapComponent";
 import { Link } from "react-router-dom";
-
+import WeatherForecastList from "./ForecastComponent";
 import { Header } from "./HeaderComponent";
 import "./WeatherApp.css";
 
@@ -49,16 +49,26 @@ export const WeatherApp = () => {
     description: "Overcast clouds",
     tempMinMax: "H:-° L:-°",
   });
+  const [Forecasts, setForecasts] = useState({}); // État local pour stocker les prévisions météo
 
-  const api_key = "41ad9850d25b95de0ec5b350ddd03b16";
+
+  const api_key_current = "41ad9850d25b95de0ec5b350ddd03b16";
+  const api_key_forecast = "fa2b516846c64f86a72863c6ba2cabd4";
+
 
   const fetchWeatherAndGeocodeData = async (city) => {
     try {
       let response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key}`,
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key_current}`,
       );
       if (!response.ok) throw new Error("Weather data fetch failed");
+
+      let Forecastsda = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${api_key_forecast}`);
+      if (!response.ok || !Forecastsda.ok) throw new Error("Weather data fetch failed");
+
       let data = await response.json();
+      let forecastsData = await Forecastsda.json();
+      setForecasts(forecastsData); // Correction de la récupération des prévisions météo
 
       setWeatherData({
         humidity: `${Math.floor(data.main.humidity)}%`,
@@ -188,6 +198,9 @@ export const WeatherApp = () => {
       </div>
       <div className="weatherapp-map-container">
         <MapComponent center={center} />
+      </div>
+      <div className="WeatherForecastList">
+        <WeatherForecastList forecasts={Forecasts} />
       </div>
     </div>
   );
