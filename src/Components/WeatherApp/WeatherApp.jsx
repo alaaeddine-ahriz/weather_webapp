@@ -51,25 +51,20 @@ export const WeatherApp = () => {
   });
   const [Forecasts, setForecasts] = useState({}); // État local pour stocker les prévisions météo
 
-
   const api_key_current = "41ad9850d25b95de0ec5b350ddd03b16";
   const api_key_forecast = "fa2b516846c64f86a72863c6ba2cabd4";
 
-
   const fetchWeatherAndGeocodeData = async (city) => {
     try {
+      // Fetching current weather data
       let response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key_current}`,
       );
       if (!response.ok) throw new Error("Weather data fetch failed");
 
-      let Forecastsda = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${api_key_forecast}`);
-      if (!response.ok || !Forecastsda.ok) throw new Error("Weather data fetch failed");
-
       let data = await response.json();
-      let forecastsData = await Forecastsda.json();
-      setForecasts(forecastsData); // Correction de la récupération des prévisions météo
 
+      // Setting current weather data
       setWeatherData({
         humidity: `${Math.floor(data.main.humidity)}%`,
         windSpeed: `${Math.floor(data.wind.speed)} km/h`,
@@ -80,6 +75,7 @@ export const WeatherApp = () => {
         tempMinMax: `H:${Math.floor(data.main.temp_max)}° L:${Math.floor(data.main.temp_min)}°`,
       });
 
+      // Setting background video based on current weather
       const weatherVideoMap = {
         "01d": clear_sky,
         "02d": few_clouds,
@@ -92,10 +88,31 @@ export const WeatherApp = () => {
         "50d": mist,
       };
       setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clear_sky);
+    } catch (error) {
+      console.error("Failed to fetch current weather data:", error);
+    }
 
+    try {
+      // Fetching forecast data
+      let Forecastsda = await fetch(
+        `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${api_key_forecast}`,
+      );
+      if (!Forecastsda.ok) throw new Error("Forecast data fetch failed");
+
+      let forecastsData = await Forecastsda.json();
+      setForecasts(forecastsData); // Setting forecast data
+    } catch (error) {
+      console.error("Failed to fetch forecast data:", error);
+      // Optionally, handle forecast fetch failure (e.g., by setting a default state or showing a message)
+    }
+
+    try {
+      // Fetching geocode data
       const geoResponse = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`,
       );
+      if (!geoResponse.ok) throw new Error("Geocode fetch failed");
+
       const geoData = await geoResponse.json();
 
       if (geoData.results && geoData.results.length > 0) {
@@ -105,7 +122,7 @@ export const WeatherApp = () => {
         console.error("No results found for the specified city.");
       }
     } catch (error) {
-      console.error("Failed to fetch weather data:", error);
+      console.error("Failed to fetch geocode data:", error);
     }
   };
 
