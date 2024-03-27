@@ -180,19 +180,19 @@ export const WeatherApp = () => {
         <div className="weatherapp-element">
           <div className="data">
             <div className="humidity-percent">{weatherData.humidity}</div>
-            <div className="text">Humidité</div>
+            <div className="text">Humidity</div>
           </div>
         </div>
         <div className="weatherapp-element">
           <div className="data">
             <div className="wind-speed">{weatherData.windSpeed}</div>
-            <div className="text">Vent</div>
+            <div className="text">Wind</div>
           </div>
         </div>
         <div className="weatherapp-element">
           <div className="data">
             <div className="feels-like">{weatherData.feelsLike}</div>
-            <div className="text">Ressenti</div>
+            <div className="text">Feels Like</div>
           </div>
         </div>
       </div>
