@@ -22,15 +22,23 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route index element={<WeatherApp />} />
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/register" element={<Signup />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="*" element={<Nopage />} />
-          
-          {/* Uncomment the other routes and add their corresponding imports at the top after fixing the imports */}
+          {cookies.user ? (
+            <>
+              <Route index element={<WeatherApp user={cookies.user} />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="*" element={<Nopage />} />
+            </>
+          ) : (
+            <>
+              <Route index element={<WeatherApp user={cookies.user} />} />
+              <Route path="/login" element={<Login onLogin={handleLogin} />} />
+              <Route path="/register" element={<Signup />} />
+              <Route path="*" element={<Nopage />} />
+            </>
+          )}
         </Routes>
       </BrowserRouter>
     </div>
   );
+  
 }

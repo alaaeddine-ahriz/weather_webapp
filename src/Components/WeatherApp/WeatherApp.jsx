@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MapComponent from "./MapComponent";
 import { Link } from "react-router-dom";
-
-import { Header } from "./HeaderComponent";
 import "./WeatherApp.css";
 
 // Importing images and icons
@@ -18,7 +16,7 @@ import "./WeatherApp.css";
 // import mistVideo from "../Assets/mist.mp4";
 
 import profile_image from "../Assets/profile_1.png";
-
+import { useCookies } from 'react-cookie';
 import clear_sky from "../Assets/clear_sky_img1.jpg";
 import few_clouds from "../Assets/few_clouds.jpg";
 import scattered_clouds from "../Assets/scattered_clouds.jpg";
@@ -35,6 +33,9 @@ export const center = {
 };
 
 export const WeatherApp = () => {
+
+  const [cookies] = useCookies(['userData']);
+  const userData = cookies.userData;
   const [backgroundVideo, setBackgroundVideo] = useState(clear_sky);
   const [center, setCenter] = useState({
     lat: 7.2905715,
@@ -149,7 +150,7 @@ export const WeatherApp = () => {
           }}
         />
         <div className="weatherapp-account">
-          <Link to="/Login">
+          <Link to={cookies.user ? "/dashboard" : "/login"}>
             <img
               src={profile_image}
               alt="Profile"

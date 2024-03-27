@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
-import { Header } from "../WeatherApp/HeaderComponent";
 
 function Login({onLogin}) {
   const [user, setUser] = useState('')
@@ -55,7 +54,7 @@ function Login({onLogin}) {
         <div className="back">
           <Link to="/">Retour à la météo</Link>
         </div>
-        <p>Already Have an Account</p>
+        <p>Don't have an account ?</p>
           <Link to="/register" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
             Sign Up
           </Link>
