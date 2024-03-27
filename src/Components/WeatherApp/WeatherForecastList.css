@@ -1,15 +1,15 @@
 .forecast-container {
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   margin: 30px auto;
-  width: 84%;
-  max-width: 680px;
+  width: auto;
+  max-width: 100%;
 }
 
 .forecast-list {
@@ -34,7 +34,6 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  /* Allow the date-description to grow as needed */
   text-align: left;
 }
 
@@ -48,7 +47,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(255, 255, 255);
   color: white;
   font-size: 30px;
 }
@@ -65,27 +64,27 @@
 .forecast-temps {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* Adjusted to space-between */
+  justify-content: flex-end; /* Align items to the right */
   flex-grow: 1;
-  /* Allow the temperature values to grow as needed */
+  gap: 20px; /* This creates consistent spacing between child elements */
 }
-
-.temp-min,
+.temp-min {
+  font-size: 30px;
+  font-weight: 600;
+  color: white;
+  opacity: 0.5;
+  margin-left: 20px;
+}
 .temp-max {
   font-size: 30px;
   font-weight: 600;
+  color: white;
+  margin-left: 20px;
 }
 
-.temp-bar {
-  height: 10px;
-  width: 60%;
-  /* This is the base width, it will scale down on smaller screens */
-  min-width: 100px;
-  /* Prevents the bar from becoming too small */
-  background-image: linear-gradient(to right, #add8e6, #ffa07a);
-  border-radius: 5px;
-  margin: 0 10px;
+.temp-min:first-child,
+.temp-max:first-child {
+  margin-left: 0; /* Ensures the first element doesn't have a left margin */
 }
 
 .temp-min {
@@ -96,18 +95,27 @@
   color: white;
 }
 
-/* Remove any specific styles related to .temp-bar if it's not needed */
-
 @media (max-width: 720px) {
   .forecast-container {
     padding: 10px;
-    /* Reduced padding */
-    width: 95%;
-    /* Increased width to fit small screens */
+    width: 94%;
   }
 
   .forecast-item {
     padding: 10px 0;
-    /* Reduced padding */
+  }
+
+  .forecast-date {
+    font-size: 18px;
+  }
+
+  .forecast-description {
+    font-size: 15px;
+  }
+
+  .temp-min,
+  .temp-max {
+    font-size: 18px;
+    font-weight: 300;
   }
 }

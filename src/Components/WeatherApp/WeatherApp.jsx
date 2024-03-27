@@ -54,7 +54,7 @@ export const WeatherApp = () => {
   const [Forecasts, setForecasts] = useState({}); // État local pour stocker les prévisions météo
 
   const api_key_current = "41ad9850d25b95de0ec5b350ddd03b16";
-  const api_key_forecast = "fa2b516846c64f86a72863c6ba2cabd4";
+  const api_key_forecast = "0007009a972248f19225fb70d78538b3";
 
   const fetchWeatherAndGeocodeData = async (city) => {
     try {
@@ -215,11 +215,13 @@ export const WeatherApp = () => {
           </div>
         </div>
       </div>
-      <div className="weatherapp-map-container">
-        <MapComponent center={center} />
-      </div>
-      <div className="WeatherForecastList">
-        <WeatherForecastList forecasts={Forecasts} />
+      <div className="large-components">
+        <div className="weatherapp-map-container">
+          <MapComponent center={center} />
+        </div>
+        <div className="WeatherForecastList">
+          <WeatherForecastList forecasts={Forecasts} />
+        </div>
       </div>
     </div>
   );

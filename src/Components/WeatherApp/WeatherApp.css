@@ -131,19 +131,21 @@
   margin-top: 0px;
 }
 
-.mapContainer {
+.large-components {
   width: 90%;
-  /* Makes the map container responsive */
+  width: 90%;
   max-width: 680px;
-  /* Max width to align with the overall design */
-  height: 500px;
-  /* Fixed height, consider making this responsive too */
+  height: auto;
   border-radius: 10px;
-  /* Rounded corners */
-  overflow: hidden;
-  /* Ensures the map corners are clipped to the border radius */
   margin: 30px auto;
-  /* Center the map container */
+}
+.mapContainer {
+  width: 100%;
+  max-width: 680px;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 30px auto;
 }
 
 .weatherapp-weather-temp,
