@@ -5,23 +5,23 @@ import axios from "axios";
 import "./Login.css";
 import { Header } from "../WeatherApp/HeaderComponent";
 
-function Login() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+function Login({onLogin}) {
+  const [user, setUser] = useState('')
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5200/login", { email, password })
+      .post("http://localhost:4000/login", { user })
       .then((res) => {
         console.log("login: " + res.data);
         if (res.data.Status === "Success") {
+          onLogin({user})
           if (res.data.role === "admin") {
             navigate("/dashboard");
           } else {
-            navigate("/home");
+            navigate("/");
           }
         }
       })
@@ -41,24 +41,12 @@ function Login() {
               <strong>Email</strong>
             </label> */}
             <input
-              type="email"
-              placeholder="Adresse mail"
+              type="user"
+              placeholder="Phone number/ Username"
               autoComplete="off"
-              name="email"
-              className="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="login-element">
-            {/* <label htmlFor="email">
-              <strong>Password</strong>
-            </label> */}
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              name="password"
-              className="password"
-              onChange={(e) => setPassword(e.target.value)}
+              name="user"
+              className="form-control rounded-0"
+              onChange={(e) => setUser(e.target.value)}
             />
           </div>
           <button type="submit">Se connecter</button>
@@ -67,6 +55,10 @@ function Login() {
         <div className="back">
           <Link to="/">Retour à la météo</Link>
         </div>
+        <p>Already Have an Account</p>
+          <Link to="/register" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
+            Sign Up
+          </Link>
       </div>
     </div>
   );
