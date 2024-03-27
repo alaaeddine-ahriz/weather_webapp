@@ -52,12 +52,12 @@ function Signup() {
             Register
           </button>
         </form>
-        <p>Already Have an Account</p>
+        <p></p>
         <Link
           to="/login"
           className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
         >
-          Login
+          Already Have an Account
         </Link>
       </div>
     </div>

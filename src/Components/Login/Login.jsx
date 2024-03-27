@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
-function Login({onLogin}) {
-  const [user, setUser] = useState('')
+function Login({ onLogin }) {
+  const [user, setUser] = useState("");
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
@@ -16,7 +16,7 @@ function Login({onLogin}) {
       .then((res) => {
         console.log("login: " + res.data);
         if (res.data.Status === "Success") {
-          onLogin({user})
+          onLogin({ user });
           if (res.data.role === "admin") {
             navigate("/dashboard");
           } else {
@@ -54,10 +54,13 @@ function Login({onLogin}) {
         <div className="back">
           <Link to="/">Retour à la météo</Link>
         </div>
-        <p>Don't have an account ?</p>
-          <Link to="/register" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
-            Sign Up
-          </Link>
+        <p></p>
+        <Link
+          to="/register"
+          className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
+        >
+          Don't have an account
+        </Link>
       </div>
     </div>
   );

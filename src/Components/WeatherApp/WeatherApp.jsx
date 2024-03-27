@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import MapComponent from "./MapComponent";
 import { Link } from "react-router-dom";
 import WeatherForecastList from "./ForecastComponent";
-import { Header } from "./HeaderComponent";
 import "./WeatherApp.css";
 
 // Importing images and icons
