@@ -26,7 +26,7 @@ function WeatherForecastList({ forecasts }) {
         <span className="temp-max">{forecast.low_temp}°C</span>
       </div>
     </li>
-  ));
+  )) || 'Loading...';
 
   return (
     <div className="forecast-container">
