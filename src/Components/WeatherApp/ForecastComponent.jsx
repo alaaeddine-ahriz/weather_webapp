@@ -2,6 +2,11 @@ import React from 'react';
 import './WeatherForecastList.css'; // Ensure the CSS file name matches
 
 function WeatherForecastList({ forecasts }) {
+
+  if (!forecasts || !forecasts.data) {
+    // You could return a loading indicator or null here
+    return <div className='Loading'>Loading...</div>;
+  }
   // Helper function to format date
   const formatDate = (datetime) => {
     const date = new Date(datetime);
