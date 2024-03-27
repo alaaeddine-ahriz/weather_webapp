@@ -80,13 +80,12 @@
 .temp-bar {
   height: 10px;
   width: 60%;
-  /* This will be the normal width */
+  /* This is the base width, it will scale down on smaller screens */
   min-width: 100px;
-  /* Set a minimum width to prevent the bar from becoming too small */
+  /* Prevents the bar from becoming too small */
   background-image: linear-gradient(to right, #add8e6, #ffa07a);
   border-radius: 5px;
   margin: 0 10px;
-  /* Spacing between temps and bar */
 }
 
 .temp-min {
@@ -98,3 +97,17 @@
 }
 
 /* Remove any specific styles related to .temp-bar if it's not needed */
+
+@media (max-width: 720px) {
+  .forecast-container {
+    padding: 10px;
+    /* Reduced padding */
+    width: 95%;
+    /* Increased width to fit small screens */
+  }
+
+  .forecast-item {
+    padding: 10px 0;
+    /* Reduced padding */
+  }
+}
