@@ -36,9 +36,27 @@ const varifyUser = (req, res, next) => {
     }
 }
 
-app.get('/dashboard',varifyUser ,(req, res) => {
+app.get('/dashboard',/*varifyUser ,*/(req, res) => {
     res.json("Success")
 })
+
+app.get('/get-nom/:nomRecherche', /*varifyUser,*/ async (req, res) =>{
+    const nomRecherche = req.params.nomRecherche;
+
+    try {
+        const resultat = await UserModel.findOne({ user: nomRecherche });
+
+        if (resultat) {
+            const { nom, Prenom , Ville_par_défaut} = resultat;
+            res.json({ nom, Prenom, Ville_par_défaut });
+        } else {
+            res.status(404).json({ message: "Aucun nom trouvé avec ce critère de recherche." });
+        }
+    } catch (erreur) {
+        console.error("Erreur lors de la récupération du nom:", erreur);
+        res.status(500).json({ message: "Erreur lors de la récupération du nom." });
+    }
+});
 
 app.post('/register', (req, res) => {
     const { user, nom , Prenom, Ville_par_défaut} = req.body; // Récupérer le nom à partir du corps de la requête
