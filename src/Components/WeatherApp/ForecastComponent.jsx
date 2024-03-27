@@ -27,8 +27,11 @@ function WeatherForecastList({ forecasts }) {
         <div className="forecast-description">{forecast.weather.description}</div>
       </div>
       <div className="forecast-temps">
-        <span className="temp-min">{forecast.high_temp}°C</span>
-        <span className="temp-max">{forecast.low_temp}°C</span>
+        <span className="temp-min">{forecast.low_temp}°C</span>
+        <div className="temp-bar" style={{
+          backgroundImage: `linear-gradient(to right, #add8e6, #ffa07a)`
+        }}></div>
+        <span className="temp-max">{forecast.high_temp}°C</span>
       </div>
     </li>
   )) || 'Loading...';

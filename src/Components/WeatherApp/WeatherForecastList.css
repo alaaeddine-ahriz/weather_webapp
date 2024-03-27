@@ -5,7 +5,6 @@
   border-radius: 10px;
   font-family: 'Arial', sans-serif;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  /* Reduced shadow for subtlety */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   margin: 30px auto;
@@ -25,8 +24,6 @@
   align-items: center;
   padding: 15px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-  /* Reduced shadow for subtlety */
 }
 
 .forecast-item:last-child {
@@ -36,7 +33,8 @@
 .forecast-date-desc {
   display: flex;
   flex-direction: column;
-  flex-basis: 50%;
+  flex-grow: 1;
+  /* Allow the date-description to grow as needed */
   text-align: left;
 }
 
@@ -65,23 +63,38 @@
 }
 
 .forecast-temps {
-  flex-basis: 50%;
-  text-align: right;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  /* Adjusted to space-between */
+  flex-grow: 1;
+  /* Allow the temperature values to grow as needed */
 }
 
 .temp-min,
 .temp-max {
   font-size: 30px;
   font-weight: 600;
-  margin: 0 5px;
+}
+
+.temp-bar {
+  height: 10px;
+  width: 60%;
+  /* This will be the normal width */
+  min-width: 100px;
+  /* Set a minimum width to prevent the bar from becoming too small */
+  background-image: linear-gradient(to right, #add8e6, #ffa07a);
+  border-radius: 5px;
+  margin: 0 10px;
+  /* Spacing between temps and bar */
 }
 
 .temp-min {
-  color: white
+  color: white;
 }
 
 .temp-max {
-  color: white
+  color: white;
 }
+
+/* Remove any specific styles related to .temp-bar if it's not needed */
