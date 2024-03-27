@@ -54,7 +54,6 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
 }
 
 .weatherapp-account-image {
@@ -162,15 +161,17 @@
 /* Responsive adjustments */
 
 @media (max-width: 720px) {
+  .weatherapp-top-bar {
+    height: 50px;
+  }
   .weatherapp-top-bar input {
     width: 50%;
-    height: 50px;
+    height: 100%;
     font-size: 20px;
   }
 
   .weatherapp-account {
-    background-color: white;
-    height: 50px;
+    height: 100%;
     width: 50px;
   }
 
