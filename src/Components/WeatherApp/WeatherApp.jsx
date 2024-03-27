@@ -10,14 +10,7 @@ import "./WeatherApp.css";
 // import wind_icon from "../Assets/wind.png";
 // import humidity_icon from "../Assets/humidity.png";
 // import clear_sky from "../Assets/01d.svg";
-// import few_clouds from "../Assets/02d.svg";
-// import scattered_clouds from "../Assets/03d.svg";
-// import broken_clouds from "../Assets/04d.svg";
-// import shower_rain from "../Assets/09d.svg";
-// import rain from "../Assets/10d.svg";
-// import thunderstorm from "../Assets/11d.svg";
-// import snow from "../Assets/13d.svg";
-// import mist from "../Assets/50d.svg";
+
 // import clearSkyVideo from "../Assets/clear_sky.mp4";
 // import thunderstormVideo from "../Assets/thunderstorm.mp4";
 // import fewCloudsVideo from "../Assets/few_clouds.mp4";
@@ -26,7 +19,15 @@ import "./WeatherApp.css";
 
 import profile_image from "../Assets/profile_1.png";
 
-import clearSkyImage from "../Assets/clear_sky_img1.jpg";
+import clear_sky from "../Assets/clear_sky_img1.jpg";
+import few_clouds from "../Assets/few_clouds.jpg";
+import scattered_clouds from "../Assets/scattered_clouds.jpg";
+import broken_clouds from "../Assets/broken_clouds.jpg";
+import shower_rain from "../Assets/shower_rain.jpg";
+import rain from "../Assets/10d.svg";
+import thunderstorm from "../Assets/thunderstorm.jpg";
+import snow from "../Assets/snow.jpg";
+import mist from "../Assets/mist.jpg";
 
 export const center = {
   lat: 7.2905715,
@@ -34,7 +35,7 @@ export const center = {
 };
 
 export const WeatherApp = () => {
-  const [backgroundVideo, setBackgroundVideo] = useState(clearSkyImage);
+  const [backgroundVideo, setBackgroundVideo] = useState(clear_sky);
   const [center, setCenter] = useState({
     lat: 7.2905715,
     lng: 80.6337262,
@@ -70,19 +71,17 @@ export const WeatherApp = () => {
       });
 
       const weatherVideoMap = {
-        "01d": clearSkyImage,
-        "02d": clearSkyImage,
-        "03d": clearSkyImage,
-        "04d": clearSkyImage,
-        "09d": clearSkyImage,
-        "10d": clearSkyImage,
-        "11d": clearSkyImage,
-        "13d": clearSkyImage,
-        "50d": clearSkyImage,
+        "01d": clear_sky,
+        "02d": few_clouds,
+        "03d": scattered_clouds,
+        "04d": broken_clouds,
+        "09d": shower_rain,
+        "10d": shower_rain,
+        "11d": thunderstorm,
+        "13d": snow,
+        "50d": mist,
       };
-      setBackgroundVideo(
-        weatherVideoMap[data.weather[0].icon] || clearSkyImage,
-      );
+      setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clear_sky);
 
       const geoResponse = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`,

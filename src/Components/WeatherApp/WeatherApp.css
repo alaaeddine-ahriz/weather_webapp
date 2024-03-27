@@ -78,7 +78,7 @@
   justify-content: center;
   color: white;
   font-size: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-weight: 600;
 }
 
@@ -115,12 +115,18 @@
 }
 
 .mapContainer {
-  width: 90%; /* Makes the map container responsive */
-  max-width: 680px; /* Max width to align with the overall design */
-  height: 500px; /* Fixed height, consider making this responsive too */
-  border-radius: 10px; /* Rounded corners */
-  overflow: hidden; /* Ensures the map corners are clipped to the border radius */
-  margin: 30px auto; /* Center the map container */
+  width: 90%;
+  /* Makes the map container responsive */
+  max-width: 680px;
+  /* Max width to align with the overall design */
+  height: 500px;
+  /* Fixed height, consider making this responsive too */
+  border-radius: 10px;
+  /* Rounded corners */
+  overflow: hidden;
+  /* Ensures the map corners are clipped to the border radius */
+  margin: 30px auto;
+  /* Center the map container */
 }
 
 .weatherapp-weather-temp,
@@ -135,33 +141,40 @@
 }
 
 /* Responsive adjustments */
+
 @media (max-width: 720px) {
   .weatherapp-top-bar input {
-    width: 50%; /* Increased width for smaller screens */
+    width: 50%;
     height: 50px;
     font-size: 20px;
   }
+
   .weatherapp-account {
     background-color: white;
     height: 50px;
     width: 50px;
   }
+
   .weatherapp-weather-temp {
-    font-size: 100px; /* Smaller font size */
+    font-size: 100px;
     font-weight: 300;
   }
+
   .weatherapp-weather-location {
-    font-size: 30px; /* Smaller font size */
+    font-size: 30px;
     font-weight: 500;
   }
+
   .weatherapp-weather-description {
-    font-size: 25px; /* Smaller font size */
+    font-size: 25px;
     font-weight: 500;
   }
+
   .weatherapp-weather-tempMinMax {
-    font-size: 25px; /* Smaller font size */
+    font-size: 25px;
     font-weight: 500;
   }
+
   .weatherapp-data-container {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -183,7 +196,7 @@
 
   .data,
   .text {
-    font-size: 20px; /* Adjust font size for better readability on smaller screens */
+    font-size: 20px;
     font-weight: 500;
   }
 }
