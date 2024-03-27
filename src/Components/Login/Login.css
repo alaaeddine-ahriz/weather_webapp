@@ -1,80 +1,89 @@
-/* Login.css */
+/* Login.css Updates */
 
 .login-container {
-    width: 720px;
-    height: 1600px;
-    margin: auto;
-    background-image: linear-gradient(150deg, #130754 0%,#3b2f80 100%);
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    
-  }
-  
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  height: 100vh;
+  background-image: url("../Assets/clear_sky_img.jpg");
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
 .login-form {
-    padding: 40px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0 4px 6px rgba(0.1, 0.1, 0.1, 0.1);
-    width: 100%;
-    max-width: 400px; /* Ensures the form isn't too wide on larger screens */
+  padding: 40px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.3
+  ); /* Slightly increased opacity for better readability */
+  border-radius: 20px; /* Soften the corners a bit more */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* More pronounced shadow for depth */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(2px);
+  width: 80%;
+  max-width: 360px; /* Adjust based on typical device widths */
+}
+
+/* Ensuring text is easily readable and appealing */
+.login-seconnecter-titre,
+label,
+p,
+a {
+  color: #333; /* Darker shade for better contrast */
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;  */
+}
+
+/* Input fields with more modern styling */
+input[type="email"],
+input[type="password"] {
+  width: 80%;
+  padding: 15px;
+  border: 2px solid #ddd; /* Subtle border */
+  border-radius: 20px; /* Rounded edges */
+  font-size: 16px;
+  margin-bottom: 20px; /* Ensure consistent spacing */
+}
+
+/* Button enhancements for better interactivity */
+button {
+  padding: 15px 20px;
+  background-color: #0056b3; /* Solid color, smoother transition to hover */
+  color: white;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  font-weight: 600; /* Make text bold */
+  transition:
+    background-color 0.4s ease-in-out,
+    transform 0.2s; /* Smoother transitions */
+}
+
+button:hover {
+  background-color: #003d82; /* Darker on hover */
+  transform: scale(1.05); /* Slight increase in size */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 720px) {
+  .login-form {
+    padding: 20px;
+    max-width: 80%; /* Make the form take up more space on smaller screens */
   }
-  
-.login-seconnecter-titre {
-    color: #333;
-    text-align: center;
-    margin-bottom: 40px; /* Adds some space below the heading */
-  }
-  
-.login-element {
-    margin-bottom: 20px; /* Adds space between form fields */
-    width: 378px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px; /* Spaces the label from the input field */
-    color: #666;
-    font-weight: bold;
-  }
-  
+
   input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 0px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    font-size: 16px; /* Slightly larger font for readability */
-  }
-  
+  input[type="password"],
   button {
-    width: 100%;
-    padding: 10px;
-    background-image: linear-gradient(150deg, #130754 0%,#3b2f80 100%);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    padding: 12px;
+    font-size: 14px; /* Slightly smaller font size on smaller devices */
   }
-  
-  button:hover {
-    background-color: #0056b3; /* A darker blue on hover */
-  }
-  
-  p {
-    text-align: center;
-    margin-top: 16px; /* Adds some space above the paragraph */
-  }
-  
-  a {
-    color: #007bff; /* Matches the button color */
-    text-decoration: none; /* Removes underline */
-  }
-  
-  a:hover {
-    text-decoration: underline; /* Adds underline on hover for better accessibility */
-  }
-  
+}
