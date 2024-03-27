@@ -26,7 +26,7 @@ import "./WeatherApp.css";
 
 import profile_image from "../Assets/profile_1.png";
 
-import clearSkyImage from "../Assets/clear_sky_img.jpg";
+import clearSkyImage from "../Assets/clear_sky_img1.jpg";
 
 export const center = {
   lat: 7.2905715,

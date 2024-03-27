@@ -1,11 +1,9 @@
-/* Login.css Updates */
-
 .login-container {
   position: relative;
   width: 100%;
   max-width: 720px;
   height: 100vh;
-  background-image: url("../Assets/clear_sky_img.jpg");
+  background-image: url("../Assets/clear_sky_img1.jpg");
   background-size: cover;
   background-position: center;
   margin: auto;
@@ -17,60 +15,65 @@
 
 .login-form {
   padding: 40px;
-  background: rgba(
-    255,
-    255,
-    255,
-    0.3
-  ); /* Slightly increased opacity for better readability */
-  border-radius: 30px; /* Soften the corners a bit more */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* More pronounced shadow for depth */
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(2px);
   width: 70%;
-  max-width: 360px; /* Adjust based on typical device widths */
+  max-width: 360px;
 }
 
-/* Ensuring text is easily readable and appealing */
 label,
 p,
 a {
-  color: #333; /* Darker shade for better contrast */
-  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;  */
+  color: #333;
 }
 
 .login-seconnecter-titre {
   color: white;
   margin-bottom: 35px;
-  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.57);
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
+
 /* Input fields with more modern styling */
 input[type="email"],
 input[type="password"] {
   width: 90%;
   padding: 15px;
-  border: 2px solid #ddd; /* Subtle border */
-  border-radius: 20px; /* Rounded edges */
+  border: 1px solid #cfcfcf86;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(2px);
   font-size: 16px;
-  margin-bottom: 20px; /* Ensure consistent spacing */
+  margin-bottom: 20px;
 }
 
-/* Button enhancements for better interactivity */
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+  color: whitesmoke;
+  opacity: 1;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
 button {
   padding: 15px 20px;
-  background-color: #0056b3; /* Solid color, smoother transition to hover */
+  background-color: #3e7abb;
   color: white;
   border-radius: 30px;
   margin-bottom: 20px;
-  font-weight: 600; /* Make text bold */
+  font-weight: 600;
   transition:
     background-color 0.4s ease-in-out,
-    transform 0.2s; /* Smoother transitions */
+    transform 0.2s;
 }
 
 button:hover {
-  background-color: #003d82; /* Darker on hover */
-  transform: scale(1.05); /* Slight increase in size */
+  background-color: #003d82;
+  transform: scale(1.05);
 }
 
 a:hover {
@@ -81,13 +84,13 @@ a:hover {
 @media (max-width: 720px) {
   .login-form {
     padding: 20px;
-    max-width: 70%; /* Make the form take up more space on smaller screens */
+    max-width: 70%;
   }
 
   input[type="email"],
   input[type="password"],
   button {
     padding: 12px;
-    font-size: 14px; /* Slightly smaller font size on smaller devices */
+    font-size: 14px;
   }
 }
