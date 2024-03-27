@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import MapComponent from "./MapComponent";
 import { Link } from "react-router-dom";
+import WeatherForecastList from "./ForecastComponent";
+import { Header } from "./HeaderComponent";
 import "./WeatherApp.css";
 
 // Importing images and icons
@@ -16,7 +18,7 @@ import "./WeatherApp.css";
 // import mistVideo from "../Assets/mist.mp4";
 
 import profile_image from "../Assets/profile_1.png";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 import clear_sky from "../Assets/clear_sky_img1.jpg";
 import few_clouds from "../Assets/few_clouds.jpg";
 import scattered_clouds from "../Assets/scattered_clouds.jpg";
@@ -33,8 +35,7 @@ export const center = {
 };
 
 export const WeatherApp = () => {
-
-  const [cookies] = useCookies(['userData']);
+  const [cookies] = useCookies(["userData"]);
   const userData = cookies.userData;
   const [backgroundVideo, setBackgroundVideo] = useState(clear_sky);
   const [center, setCenter] = useState({
@@ -50,17 +51,22 @@ export const WeatherApp = () => {
     description: "Overcast clouds",
     tempMinMax: "H:-° L:-°",
   });
+  const [Forecasts, setForecasts] = useState({}); // État local pour stocker les prévisions météo
 
-  const api_key = "41ad9850d25b95de0ec5b350ddd03b16";
+  const api_key_current = "41ad9850d25b95de0ec5b350ddd03b16";
+  const api_key_forecast = "fa2b516846c64f86a72863c6ba2cabd4";
 
   const fetchWeatherAndGeocodeData = async (city) => {
     try {
+      // Fetching current weather data
       let response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key}`,
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key_current}`,
       );
       if (!response.ok) throw new Error("Weather data fetch failed");
+
       let data = await response.json();
 
+      // Setting current weather data
       setWeatherData({
         humidity: `${Math.floor(data.main.humidity)}%`,
         windSpeed: `${Math.floor(data.wind.speed)} km/h`,
@@ -71,6 +77,7 @@ export const WeatherApp = () => {
         tempMinMax: `H:${Math.floor(data.main.temp_max)}° L:${Math.floor(data.main.temp_min)}°`,
       });
 
+      // Setting background video based on current weather
       const weatherVideoMap = {
         "01d": clear_sky,
         "02d": few_clouds,
@@ -83,10 +90,31 @@ export const WeatherApp = () => {
         "50d": mist,
       };
       setBackgroundVideo(weatherVideoMap[data.weather[0].icon] || clear_sky);
+    } catch (error) {
+      console.error("Failed to fetch current weather data:", error);
+    }
 
+    try {
+      // Fetching forecast data
+      let Forecastsda = await fetch(
+        `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${api_key_forecast}`,
+      );
+      if (!Forecastsda.ok) throw new Error("Forecast data fetch failed");
+
+      let forecastsData = await Forecastsda.json();
+      setForecasts(forecastsData); // Setting forecast data
+    } catch (error) {
+      console.error("Failed to fetch forecast data:", error);
+      // Optionally, handle forecast fetch failure (e.g., by setting a default state or showing a message)
+    }
+
+    try {
+      // Fetching geocode data
       const geoResponse = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyAW0-OQUNUuQHQ-TvSuo4v4GjRKmHE1eps`,
       );
+      if (!geoResponse.ok) throw new Error("Geocode fetch failed");
+
       const geoData = await geoResponse.json();
 
       if (geoData.results && geoData.results.length > 0) {
@@ -96,7 +124,7 @@ export const WeatherApp = () => {
         console.error("No results found for the specified city.");
       }
     } catch (error) {
-      console.error("Failed to fetch weather data:", error);
+      console.error("Failed to fetch geocode data:", error);
     }
   };
 
@@ -171,24 +199,27 @@ export const WeatherApp = () => {
         <div className="weatherapp-element">
           <div className="data">
             <div className="humidity-percent">{weatherData.humidity}</div>
-            <div className="text">Humidité</div>
+            <div className="text">Humidity</div>
           </div>
         </div>
         <div className="weatherapp-element">
           <div className="data">
             <div className="wind-speed">{weatherData.windSpeed}</div>
-            <div className="text">Vent</div>
+            <div className="text">Wind</div>
           </div>
         </div>
         <div className="weatherapp-element">
           <div className="data">
             <div className="feels-like">{weatherData.feelsLike}</div>
-            <div className="text">Ressenti</div>
+            <div className="text">Feels Like</div>
           </div>
         </div>
       </div>
       <div className="weatherapp-map-container">
         <MapComponent center={center} />
+      </div>
+      <div className="WeatherForecastList">
+        <WeatherForecastList forecasts={Forecasts} />
       </div>
     </div>
   );

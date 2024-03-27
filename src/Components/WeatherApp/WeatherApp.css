@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   max-width: 720px;
-  height: 1200px;
+  height: 2000px;
   margin: auto;
   align-items: center;
   overflow: hidden;
@@ -17,9 +17,8 @@
 
 .weatherapp-top-bar input {
   display: flex;
-  width: 450px;
   height: 90px;
-  background: white;
+  /* background: white; */
   border: none;
   outline: none;
   border-radius: 10px;
