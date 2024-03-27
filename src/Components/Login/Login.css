@@ -32,7 +32,6 @@
 }
 
 /* Ensuring text is easily readable and appealing */
-.login-seconnecter-titre,
 label,
 p,
 a {
@@ -40,6 +39,11 @@ a {
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;  */
 }
 
+.login-seconnecter-titre {
+  color: white;
+  margin-bottom: 35px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.57);
+}
 /* Input fields with more modern styling */
 input[type="email"],
 input[type="password"] {

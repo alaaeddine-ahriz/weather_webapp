@@ -34,7 +34,7 @@ function Login() {
             <Header/>
         </div> */}
       <div className="login-form">
-        {/* <h2 className="login-seconnecter-titre">toz de vous revoir</h2> */}
+        <h2 className="login-seconnecter-titre">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="login-element">
             {/* <label htmlFor="email">
