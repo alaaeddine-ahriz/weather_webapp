@@ -23,7 +23,7 @@ if (process.env.ON === 'false') {
     URL = process.env.DB_URI;
 }
 
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect('mongodb://localhost:27017/Users');
 
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
@@ -50,9 +50,19 @@ app.get('/dashboard', /*verifyUser,*/ (req, res) => {
 
 app.post('/register', (req, res) => {
     const { user } = req.body;
-    UserModel.create({ user: user })
-        .then(user => res.json("Success"))
-        .catch(err => res.json(err));
+    UserModel.findOne({ user: user })
+    .then(existingUser => {
+        if (existingUser) {
+            // L'utilisateur existe déjà, renvoyer un message d'erreur
+            res.status(400).json({ message: "User already exists" });
+        } else {
+            // L'utilisateur n'existe pas, créer une nouvelle entrée dans la base de données
+            UserModel.create({ user: user })
+                .then(user => res.json("Success"))
+                .catch(err => res.status(500).json(err));
+        }
+    })
+    .catch(err => res.status(500).json(err));
 });
 
 app.post('/login', (req, res) => {

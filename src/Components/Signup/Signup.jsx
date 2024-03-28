@@ -8,22 +8,32 @@ function Signup() {
   // const [password, setPassword] = useState()
   const navigate = useNavigate();
   const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(true); // État pour suivre si le numéro de téléphone est valide
+  const [alreadySignedUp, setAlreadySignedUp] = useState(false); // Nouvelle variable d'état pour afficher le message "Already signed up"
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const phoneNumberPattern = /^0[1-9]([-. ]?[0-9]{2}){4}$/;
+
     if (!phoneNumberPattern.test(user)) {
       // Afficher un message d'erreur ou prendre une action appropriée si le numéro n'est pas valide
       setIsValidPhoneNumber(false);
       return;
     }
+
     setIsValidPhoneNumber(true);
     axios
       .post("http://localhost:4000/register", { user })
       .then((res) => {
         navigate("/login");
       })
-      .catch((err) => console.log(err));
+      .catch(err => {
+          if (err.response && err.response.status === 400) {
+              setAlreadySignedUp(true); // Active le message "Already signed up"
+          } else {
+              console.log(err);
+          }
+      });
   };
 
   return (
@@ -47,7 +57,7 @@ function Signup() {
               <div className="invalid-feedback">Numéro invalide.</div> // Affichage du message d'erreur si le numéro n'est pas valide
             )}
           </div>
-
+          {alreadySignedUp && <p className="text-danger">Already signed up. Please use a different phone number.</p>} {/* Affiche le message "Already signed up" si nécessaire */}
           <button type="submit" className="btn btn-success w-100 rounded-0">
             Register
           </button>
