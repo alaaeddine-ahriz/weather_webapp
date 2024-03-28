@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Dashboard.css"
 import axios from 'axios'
+
 
 function Dashboard(props) {
 
@@ -48,15 +49,38 @@ function Dashboard(props) {
                         </div>
                         <p>Options</p>
                         <div className='option'>
-                            <input type="checkbox" id="option1" name="option1" value="option1" />
+                            <input
+                                type="checkbox"
+                                id="option1"
+                                name="option1"
+                                value="option1"
+                                checked={info.Préférence_1} // Coche la case si Préférence_1 est true
+                            />
                             <label htmlFor="option1">Pluie</label><br />
-                            <input type="checkbox" id="option2" name="option2" value="option2" />
+                            <input
+                                type="checkbox"
+                                id="option2"
+                                name="option2"
+                                value="option2"
+                                checked={info.Préférence_2} // Coche la case si Préférence_2 est true
+                            />
                             <label htmlFor="option2">Vent</label><br />
-                            <input type="checkbox" id="option3" name="option3" value="option3" />
+                            <input
+                                type="checkbox"
+                                id="option3"
+                                name="option3"
+                                value="option3"
+                                checked={info.Préférence_3} // Coche la case si Préférence_3 est true
+                            />
                             <label htmlFor="option3">Humidité</label><br />
                         </div>
                     </div>
                 </div>
+                
+                <Link
+                    to="/">
+                        <button type="submit">Home</button>
+                </Link>
             </div>
         </>
     );
