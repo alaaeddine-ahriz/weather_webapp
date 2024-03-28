@@ -45,7 +45,7 @@ const verifyUser = (req, res, next) => {
 };
 
 app.get('/Dashboard', /*varifyUser,*/ async (req, res) =>{
-    const nomRecherche = req.params.nomRecherche;
+    const {nomRecherche} = req.body;
 
     try {
         const resultat = await UserModel.findOne({ user: nomRecherche });
@@ -63,7 +63,7 @@ app.get('/Dashboard', /*varifyUser,*/ async (req, res) =>{
 });
 
 app.post('/register', (req, res) => {
-    const { user } = req.body;
+    const { user,username } = req.body;
     UserModel.findOne({ user: user })
     .then(existingUser => {
         if (existingUser) {
@@ -71,7 +71,7 @@ app.post('/register', (req, res) => {
             res.status(400).json({ message: "User already exists" });
         } else {
             // L'utilisateur n'existe pas, créer une nouvelle entrée dans la base de données
-            UserModel.create({ user: user })
+            UserModel.create({ user: user , userName : username })
                 .then(user => res.json("Success"))
                 .catch(err => res.status(500).json(err));
         }

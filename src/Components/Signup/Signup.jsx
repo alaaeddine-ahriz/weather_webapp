@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 function Signup() {
   const [user, setUser] = useState();
+  const [username, setUsername] = useState();
   // const [email, setEmail] = useState()
   // const [password, setPassword] = useState()
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Signup() {
 
     setIsValidPhoneNumber(true);
     axios
-      .post("http://localhost:4000/register", { user })
+      .post("http://localhost:4000/register", { user,username })
       .then((res) => {
         navigate("/login");
       })
@@ -41,6 +42,22 @@ function Signup() {
       <div className="login-form">
         <h2 className="login-seconnecter-titre">Register</h2>
         <form onSubmit={handleSubmit}>
+        <div className="login-element">
+          <label htmlFor="username">
+            <strong>Username</strong>
+          </label>
+          <input
+            type="user"
+            placeholder="Enter Username"
+            autoComplete="off"
+            name="username"
+            className={`form-control rounded-0`}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+          <label htmlFor="username">
+            <strong>Phone Number</strong>
+          </label>
           <div className="login-element">
             {/* <label htmlFor="user">
               <strong>Phone number</strong>

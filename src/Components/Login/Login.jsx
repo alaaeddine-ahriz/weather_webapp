@@ -41,7 +41,7 @@ function Login({ onLogin }) {
             </label> */}
             <input
               type="user"
-              placeholder="Phone number/ Username"
+              placeholder="Phone number"
               autoComplete="off"
               name="user"
               className="form-control rounded-0"
