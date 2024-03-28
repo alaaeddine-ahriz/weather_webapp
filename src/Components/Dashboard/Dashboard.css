@@ -1,53 +1,116 @@
+.login-container {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  height: 100vh;
+  background-image: url("../Assets/few_clouds.jpg");
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 .dashboard {
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    width: 70%;
-    max-width: 360px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  
-  .profil {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .photo {
-    width: 100px;
-    height: 100px;
-    background-color: #ccc; /* Remplacez ceci par la couleur ou l'image appropriée */
-    border-radius: 50%;
-  }
-  
-  .photo img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
-  
-  .info-widget {
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin-top: 20px;
-    width: 100%;
-  }
-  
-  .info-widget p {
-    margin: 10px 0; /* Ajoute une marge autour de chaque champ */
-  }
-  
-  .preferences p {
-    font-weight: bold;
-  }
-  
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 70%;
+  max-width: 360px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center; /* Ensures text is centered */
+}
+
+/* Enhancing text styles for better readability */
+.dashboard,
+.profil,
+.info-widget,
+.preferences {
+  color: #333; /* Darker text for better contrast and readability */
+  font-family: "Arial", sans-serif; /* Choosing a readable and clean font family */
+}
+
+/* Styling adjustments for specific sections */
+.info-widget,
+.preferences {
+  padding: 2px 0; /* Adds padding for visual separation */
+}
+
+.profil {
+  width: 80%;
+}
+
+.photo {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc; /* Placeholder color, consider replacing or adjusting */
+  border-radius: 50%;
+  margin: 20px auto; /* Center photo and add vertical spacing */
+  overflow: hidden; /* Ensures no overflow from the container */
+}
+
+.info-widget,
+.preferences {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0; /* Adds more space around widgets for clarity */
+}
+
+.info-widget p,
+.preferences p {
+  margin: 10px 0; /* Adjusting margin for spacing between paragraphs */
+  font-size: 14px; /* Setting a comfortable font size for reading */
+  line-height: 1.5; /* Improving line height for better readability */
+}
+
+.preferences p {
+  font-weight: bold; /* Maintaining boldness for preference labels */
+}
+
+/* If you have titles or subtitles, consider adding styles like these */
+.dashboard h1,
+.dashboard h2 {
+  margin: 0 0 20px; /* Adds space below headings */
+  font-size: 24px; /* Size for headings */
+  color: #000; /* Ensures headings are legible */
+  font-weight: normal; /* Adjust weight as needed */
+}
+
+/* Adjust this part based on your specific content */
+.photo img {
+  display: block; /* Ensures the image is properly displayed */
+  max-width: 100%; /* Ensures the image scales within the container */
+  height: auto; /* Maintains aspect ratio */
+}
+
+/* Ensure inputs and buttons within .dashboard are styled to match */
+.dashboard input[type="text"],
+.dashboard input[type="password"],
+.dashboard button {
+  margin: 10px 0; /* Space between form elements */
+  padding: 10px; /* Adequate padding for touch targets */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 5px; /* Soften edges */
+  width: calc(100% - 20px); /* Full width minus padding */
+}
+
+.dashboard button {
+  background-color: #007bff; /* Example button color */
+  color: white; /* Button text color */
+  font-size: 16px; /* Button text size */
+  border: none; /* Removes border */
+}
+
+.dashboard button:hover {
+  background-color: #0056b3; /* Darker on hover for feedback */
+}
