@@ -33,9 +33,8 @@ export const center = {
   lng: 80.6337262,
 };
 
-export const WeatherApp = () => {
-  const [cookies] = useCookies(["userData"]);
-  const userData = cookies.userData;
+export const WeatherApp = (props) => {
+  const user = props.user;
   const [backgroundVideo, setBackgroundVideo] = useState(clear_sky);
   const [center, setCenter] = useState({
     lat: 7.2905715,
@@ -177,7 +176,7 @@ export const WeatherApp = () => {
           }}
         />
         <div className="weatherapp-account">
-          <Link to={cookies.user ? "/dashboard" : "/login"}>
+          <Link to={user ? "/dashboard" : "/login"}>
             <img
               src={profile_image}
               alt="Profile"

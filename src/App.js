@@ -25,7 +25,7 @@ function App() {
           {cookies.user ? (
             <>
               <Route index element={<WeatherApp user={cookies.user} />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard user={cookies.user.user} />} />
               <Route path="*" element={<Nopage />} />
             </>
           ) : (

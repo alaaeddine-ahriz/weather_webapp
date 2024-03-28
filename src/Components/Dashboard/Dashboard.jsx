@@ -3,36 +3,29 @@ import { useNavigate } from "react-router-dom";
 import "./Dashboard.css"
 import axios from 'axios'
 
-function Dashboard() {
-    const [suc, setSuc ] = useState()
-    const [info, setInfo] = useState([]);
-    const navigate = useNavigate()
-    axios.defaults.withCredentials = true;
-    useEffect(()=> {
-        axios.get('http://localhost:4000/dashboard')
-        .then(res => {
-            console.log("dashboad: " + res.data);
-            if(res.data === "Success") {
-                setSuc("Successded OK")
-            } else {
-                navigate('/')
-            }
-        }).catch(err => console.log(err))
-    }, [])
-    useEffect(()=> {
-        axios.get('http://localhost:4000/get-nom/0769611797')
-        .then(res => {
-            console.log("dashboad: " + res.data["nom"]);
-            setInfo(res.data);
-        }).catch(err => console.log(err))
-    }, [])
+function Dashboard(props) {
 
+    const user = props.user;
+    const [suc, setSuc ] = useState();
+    const [info, setInfo] = useState([]);
+    const navigate = useNavigate();
+    axios.defaults.withCredentials = true;
+    
+    
+    useEffect(()=> {
+        axios.get(`http://localhost:4000/get-nom/${user}`)
+        .then(res => {
+            console.log("dashboard: " + res.data["nom"]);
+            setInfo(res.data);
+        }).catch(err => console.log(err));
+    }, []);
 
     return ( 
         <>
             <div>
                 <h2>Dashboard</h2>
                 <p>{suc}</p>
+                <p>Contenu du cookie "userData" : {user}</p> {/* Nouveau paragraphe pour afficher le contenu du cookie */}
             </div>
             
             <div className='dashboard'>
