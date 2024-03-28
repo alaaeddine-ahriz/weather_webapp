@@ -13,7 +13,7 @@ function Dashboard(props) {
     
     
     useEffect(()=> {
-        axios.get(`http://localhost:4000/get-nom/${user}`)
+        axios.get(`http://localhost:4000/Dashboard`)
         .then(res => {
             console.log("dashboard: " + res.data["nom"]);
             setInfo(res.data);

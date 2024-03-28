@@ -44,7 +44,7 @@ const verifyUser = (req, res, next) => {
     }
 };
 
-app.get('/get-nom/:nomRecherche', /*varifyUser,*/ async (req, res) =>{
+app.get('/Dashboard', /*varifyUser,*/ async (req, res) =>{
     const nomRecherche = req.params.nomRecherche;
 
     try {
