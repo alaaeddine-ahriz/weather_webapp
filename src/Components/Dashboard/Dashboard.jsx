@@ -12,13 +12,15 @@ function Dashboard(props) {
     axios.defaults.withCredentials = true;
     
     
-    useEffect(()=> {
-        axios.get(`http://localhost:4000/Dashboard`,{user})
-        .then(res => {
+    useEffect(() => {
+        // Effectuer la requête HTTP lorsque la page est chargée
+        axios.get(`http://localhost:4000/Dashboard?nomRecherche=${user}`)
+          .then(res => {
             console.log("dashboard: " + res.data["nom"]);
             setInfo(res.data);
-        }).catch(err => console.log(err));
-    }, []);
+          })
+          .catch(err => console.log(err));
+      }, []); // Utilisation d'une liste de dépendances vide pour exécuter une fois lors du montage initial
 
     return ( 
         <>
@@ -34,7 +36,7 @@ function Dashboard(props) {
                         <img src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar" />
                     </div>
                     <div className='info-widget'>
-                        <p>{info["nom"] + " " + info["Prenom"]}</p>
+                        <p>{info["userName"]}</p>
                     </div>
                     <div className='info-widget'>
                         <p>{info["user"]}</p>

@@ -11,10 +11,19 @@ const UserSchema = new mongoose.Schema({
     Ville_par_défaut: {
         type: String,
         default : "Lyon"
+    },
+    Préférence_1: {
+        type: Boolean,
+        default: true
+    },
+    Préférence_2: {
+        type: Boolean,
+        default: true
+    },
+    Préférence_3: {
+        type: Boolean,
+        default: true
     }
-    // Préférence_1: String,
-    // Préférence_2: String,
-    // Préférence_3: String,
 },
 )
 

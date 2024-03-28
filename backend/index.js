@@ -45,14 +45,14 @@ const verifyUser = (req, res, next) => {
 };
 
 app.get('/Dashboard', /*varifyUser,*/ async (req, res) =>{
-    const {nomRecherche} = req.body;
+    const { nomRecherche } = req.query; // Utilisation de req.query pour récupérer les paramètres de l'URL
 
     try {
         const resultat = await UserModel.findOne({ user: nomRecherche });
 
         if (resultat) {
-            const { nom, Prenom , Ville_par_défaut} = resultat;
-            res.json({ nom, Prenom, Ville_par_défaut });
+            const { user, userName, Ville_par_défaut } = resultat;
+            res.json({ user, userName, Ville_par_défaut });
         } else {
             res.status(404).json({ message: "Aucun nom trouvé avec ce critère de recherche." });
         }
@@ -61,6 +61,7 @@ app.get('/Dashboard', /*varifyUser,*/ async (req, res) =>{
         res.status(500).json({ message: "Erreur lors de la récupération du nom." });
     }
 });
+
 
 app.post('/register', (req, res) => {
     const { user,username } = req.body;
