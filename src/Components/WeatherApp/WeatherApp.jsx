@@ -219,7 +219,7 @@ export const WeatherApp = (props) => {
         <div className="weatherapp-element">
           <div className="data">
             <div className="humidity-percent">{weatherData.humidity}</div>
-            <div className="text">Humidity<p>{info["Ville_par_défaut"]}</p></div>
+            <div className="text">Humidity</div>
           </div>
         </div>
         <div className="weatherapp-element">

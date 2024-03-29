@@ -7,10 +7,12 @@ function Dashboard(props) {
   const user = props.user;
   const [suc, setSuc ] = useState();
   const [info, setInfo] = useState([]);
+  const [editing, setEditing] = useState(false); // État pour suivre si l'utilisateur est en mode d'édition
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
-  const [userName, setUserName] = useState("");
+  const [successMessage, setSuccessMessage] = useState(''); // État pour gérer le message de succès
+  const [newUserName, setnewUserName] = useState("");
 
 
   useEffect(() => {
@@ -22,6 +24,43 @@ function Dashboard(props) {
         })
         .catch(err => console.log(err));
     }, []); // Utilisation d'une liste de dépendances vide pour exécuter une fois lors du montage initial
+
+    const toggleEditing = () => {
+      if (editing) {
+        axios.put("http://localhost:4000/update", { user,newUserName })
+          .then(res => {
+    
+            if (res.data.message === "User updated successfully") {
+              // Modification réussie, vous pouvez informer l'utilisateur ici
+              setSuccessMessage("User updated successfully");
+
+
+              axios.get(`http://localhost:4000/Dashboard?nomRecherche=${user}`)
+            .then(res => {
+              console.log("dashboard: " + res.data["nom"]);
+              setInfo(res.data);
+            })
+            .catch(err => console.log(err));
+            
+            } else {
+              // La modification a échoué, affichez un message d'erreur approprié
+              alert("Failed to update user");
+            }
+          })
+          .catch(err => {
+            // Erreur lors de la requête, affichez un message d'erreur
+            console.error("Error updating user:", err);
+            alert("An error occurred while updating user");
+          })
+          .finally(() => {
+            // Quelle que soit la réponse (réussie ou échouée), mettez fin à l'édition
+            setEditing(false);
+          });
+      } else {
+        // Si l'utilisateur n'est pas en mode d'édition, basculez simplement l'état d'édition
+        setEditing(!editing);
+      }
+    };
 
   return (
     <div className="login-container">
@@ -39,18 +78,35 @@ function Dashboard(props) {
             />
           </div>
           <div className="nom-prenom">
-            {/* <p>{info["nom"] + " " + info["Prenom"]}</p> */}
-            <p>{info.userName}</p>
+              <input
+                type="user"
+                value={info.user}
+                autoComplete="off"
+                name="user"
+                className="form-control rounded-0"
+              />
+ 
           </div>
           <div className="user-id">
-            <input
+          {editing ? (
+              <input
+                type="user"
+                placeholder={info.userName}
+                autoComplete="off"
+                name="userName_db"
+                className="form-control rounded-0"
+                onChange={(e) => setnewUserName(e.target.value)}
+              />
+            ) : (
+              <input
               type="user"
               value={info.userName}
               autoComplete="off"
-              name="user"
+              name="userName"
               className="form-control rounded-0"
-              onChange={(e) => setUserName(e.target.value)}
             />
+            )}
+            {successMessage && <div className="success-message">{successMessage}</div>}
           </div>
           <div className="preferences">
             <div className="ville">
@@ -67,6 +123,7 @@ function Dashboard(props) {
                 checked={info.Préférence_1} // Coche la case si Préférence_1 est true 
               />
               <label htmlFor="option1">Pluie</label>
+
               <br />
               <input
                 type="checkbox"
@@ -76,6 +133,7 @@ function Dashboard(props) {
                 checked={info.Préférence_2} // Coche la case si Préférence_2 est true
               />
               <label htmlFor="option2">Vent</label>
+
               <br />
               <input
                 type="checkbox"
@@ -87,6 +145,10 @@ function Dashboard(props) {
               <label htmlFor="option3">Humidité</label>
               <br />
             </div>
+            
+            <button onClick={toggleEditing}>
+              {editing ? "Save" : "Edit"}
+            </button>
           </div>
         </div>
       </div>

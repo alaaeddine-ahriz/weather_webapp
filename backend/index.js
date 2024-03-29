@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST","PUT"],
     credentials: true
 }));
 app.use(cookieParser());
@@ -79,6 +79,34 @@ app.post('/register', (req, res) => {
     })
     .catch(err => res.status(500).json(err));
 });
+
+app.put('/update', (req, res) => {
+    const { user, newUserName } = req.body;
+    console.log("User:", user);
+    console.log("New Username:", newUserName);
+    
+    UserModel.findOneAndUpdate(
+        { user: user }, // Condition de recherche
+        { $set: { userName: newUserName } }, // Modification à apporter
+        { new: true } // Option pour retourner le document mis à jour
+      )
+        .then(userDoc => {
+          if (userDoc) {
+            // Si un utilisateur est trouvé et mis à jour avec succès, renvoyer une réponse réussie
+            res.status(200).json({ message: "User updated successfully", updatedUser: userDoc });
+          } else {
+            // Si aucun utilisateur correspondant n'est trouvé, renvoyer une réponse 404
+            res.status(404).json({ message: "User not found" });
+          }
+        })
+        .catch(err => {
+          // En cas d'erreur, renvoyer une réponse 500 avec un message d'erreur
+          console.error(err);
+          res.status(500).json({ message: "An error occurred while updating user" });
+        });
+});
+
+
 
 app.post('/login', (req, res) => {
     const { user } = req.body;
