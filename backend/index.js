@@ -23,7 +23,7 @@ if (process.env.ON === 'false') {
     URL = process.env.DB_URI;
 }
 
-mongoose.connect('mongodb://localhost:27017/Users');
+mongoose.connect(URL);
 
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
@@ -85,7 +85,7 @@ app.put('/update', (req, res) => {
     console.log("User:", user);
     console.log("New Username:", newUserName);
     console.log("Preferences:", preferences);
-    
+
     UserModel.findOneAndUpdate(
         { user: user }, // Condition de recherche
         { $set: { 
