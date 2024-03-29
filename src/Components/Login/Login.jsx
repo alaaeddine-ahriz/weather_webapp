@@ -7,22 +7,25 @@ import "./Login.css";
 function Login({ onLogin }) {
   const [user, setUser] = useState("");
   const navigate = useNavigate();
+  const [formError, setFormError] = useState(false);
 
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:4000/login", { user })
+    if (!user.trim()) {
+      setFormError(true);
+      return;
+    }
+    axios.post("http://localhost:4000/login", { user })
       .then((res) => {
         console.log("login: " + res.data);
         if (res.data.Status === "Success") {
           onLogin({ user });
-          if (res.data.role === "admin") {
-            navigate("/dashboard");
+          navigate("/");
           } else {
-            navigate("/");
+            console.log("Identifiant incorrect");
+            setFormError(true);
           }
-        }
       })
       .catch((err) => console.log(err));
   };
@@ -48,7 +51,8 @@ function Login({ onLogin }) {
               onChange={(e) => setUser(e.target.value)}
             />
           </div>
-          <button type="submit">Se connecter</button>
+          {formError && <p className="error-message">Incorrect phone number</p>}
+          <button type="submit">Log in</button>
         </form>
         {/* <p>Already Have an Account</p> */}
         <div className="back">
