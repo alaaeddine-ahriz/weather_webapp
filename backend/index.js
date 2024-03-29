@@ -81,13 +81,21 @@ app.post('/register', (req, res) => {
 });
 
 app.put('/update', (req, res) => {
-    const { user, newUserName } = req.body;
+    const { user, newUserName, newCity,preferences } = req.body;
     console.log("User:", user);
     console.log("New Username:", newUserName);
+    console.log("Preferences:", preferences);
     
     UserModel.findOneAndUpdate(
         { user: user }, // Condition de recherche
-        { $set: { userName: newUserName } }, // Modification à apporter
+        { $set: { 
+            userName: newUserName, 
+            Ville_par_défaut: newCity,
+            Préférence_1: preferences.Préférence_1,
+            Préférence_2: preferences.Préférence_2,
+            Préférence_3: preferences.Préférence_3
+         } 
+        },  // Modifications à apporter
         { new: true } // Option pour retourner le document mis à jour
       )
         .then(userDoc => {
@@ -105,6 +113,7 @@ app.put('/update', (req, res) => {
           res.status(500).json({ message: "An error occurred while updating user" });
         });
 });
+
 
 
 

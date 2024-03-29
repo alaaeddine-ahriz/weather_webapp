@@ -13,7 +13,8 @@ function Dashboard(props) {
 
   const [successMessage, setSuccessMessage] = useState(''); // État pour gérer le message de succès
   const [newUserName, setnewUserName] = useState("");
-
+  const [newCity, setnewCity] = useState("");
+  const [preferences, setPreferences] = useState({});
 
   useEffect(() => {
       // Effectuer la requête HTTP lorsque la page est chargée
@@ -21,13 +22,18 @@ function Dashboard(props) {
         .then(res => {
           console.log("dashboard: " + res.data["nom"]);
           setInfo(res.data);
+          setPreferences({
+            Préférence_1: info.Préférence_1,
+            Préférence_2: info.Préférence_2,
+            Préférence_3: info.Préférence_3
+          });
         })
         .catch(err => console.log(err));
     }, []); // Utilisation d'une liste de dépendances vide pour exécuter une fois lors du montage initial
 
     const toggleEditing = () => {
       if (editing) {
-        axios.put("http://localhost:4000/update", { user,newUserName })
+        axios.put("http://localhost:4000/update", { user,newUserName ,newCity, preferences})
           .then(res => {
     
             if (res.data.message === "User updated successfully") {
@@ -39,6 +45,11 @@ function Dashboard(props) {
             .then(res => {
               console.log("dashboard: " + res.data["nom"]);
               setInfo(res.data);
+              setPreferences({
+                Préférence_1: res.data.Préférence_1,
+                Préférence_2: res.data.Préférence_2,
+                Préférence_3: res.data.Préférence_3
+              });
             })
             .catch(err => console.log(err));
             
@@ -60,6 +71,14 @@ function Dashboard(props) {
         // Si l'utilisateur n'est pas en mode d'édition, basculez simplement l'état d'édition
         setEditing(!editing);
       }
+    };  
+
+    const handlePreferenceChange = (e) => {
+      const { name, checked } = e.target;
+      setPreferences(prevState => ({
+        ...prevState,
+        [name]: checked
+      }));
     };
 
   return (
@@ -106,41 +125,60 @@ function Dashboard(props) {
               className="form-control rounded-0"
             />
             )}
-            {successMessage && <div className="success-message">{successMessage}</div>}
+            
           </div>
           <div className="preferences">
             <div className="ville">
               <p> <strong>Ville par défaut </strong></p>
-              <p> {info["Ville_par_défaut"] || "Lyon"} </p>
+              {editing ? (
+              <input
+                type="user"
+                placeholder={info.Ville_par_défaut}
+                autoComplete="off"
+                name="userName_db"
+                className="form-control rounded-0"
+                onChange={(e) => setnewCity(e.target.value)}
+              />
+            ) : (
+              <input
+              type="user"
+              value={info.Ville_par_défaut}
+              autoComplete="off"
+              name="userName"
+              className="form-control rounded-0"
+            />
+            )}
             </div>
-            <p><strong>Préférences</strong> </p>
+            { !editing && successMessage && <div className="success-message">{successMessage}</div>}
+            <p><strong>Préférences</strong></p>
             <div className="option">
               <input
                 type="checkbox"
                 id="option1"
-                name="option1"
-                value="option1"
-                checked={info.Préférence_1} // Coche la case si Préférence_1 est true 
+                name="Préférence_1"
+                checked={preferences.Préférence_1}
+                onChange={handlePreferenceChange}
+                disabled={!editing}
               />
               <label htmlFor="option1">Pluie</label>
-
               <br />
               <input
                 type="checkbox"
                 id="option2"
-                name="option2"
-                value="option2"
-                checked={info.Préférence_2} // Coche la case si Préférence_2 est true
+                name="Préférence_2"
+                checked={preferences.Préférence_2}
+                onChange={handlePreferenceChange}
+                disabled={!editing}
               />
               <label htmlFor="option2">Vent</label>
-
               <br />
               <input
                 type="checkbox"
                 id="option3"
-                name="option3"
-                value="option3"
-                checked={info.Préférence_1} // Coche la case si Préférence_1 est true 
+                name="Préférence_3"
+                checked={preferences.Préférence_3}
+                onChange={handlePreferenceChange}
+                disabled={!editing}
               />
               <label htmlFor="option3">Humidité</label>
               <br />
