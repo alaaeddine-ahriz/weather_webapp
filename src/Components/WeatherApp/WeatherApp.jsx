@@ -64,7 +64,10 @@ export const WeatherApp = (props) => {
         console.log("dashboard: " + res.data["nom"]);
         setInfo(res.data);
       })
-      .catch(err => console.log(err), console.log(info["preference_1"]));
+      .catch(err => {
+        console.log(err);
+        console.log(info.Préférence_1);
+      });
   }, []); // Utilisation d'une liste de dépendances vide pour exécuter une fois lors du montage initial
 
 
@@ -225,7 +228,7 @@ export const WeatherApp = (props) => {
             <div className="text">Wind</div>
           </div>
         </div>
-        {info["preference_1"] ? (
+        {info.Préférence_1 ? (
         <div className="weatherapp-element">
           <div className="data">
             <div className="feels-like">{weatherData.feelsLike}</div>
