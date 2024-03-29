@@ -83,7 +83,15 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
     const { user } = req.body;
     UserModel.findOne({ user: user })
-    return res.json({ Status: "Success", role: user.role });
+    .then(existingUser =>{
+        if (existingUser){
+            res.json({ Status: "Success", role: user.role });
+        } else {
+            res.status(300).json({message : "User doesn't exist"});
+
+        }
+    }).catch(err => res.status(500).json(err));
+
         // .then(user => {
         //     if (user) {
         //         bcrypt.compare(password, user.password, (err, response) => {
