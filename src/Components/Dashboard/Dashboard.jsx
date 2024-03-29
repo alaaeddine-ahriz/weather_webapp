@@ -23,27 +23,26 @@ function Dashboard(props) {
     <div className="login-container">
       <div className="dashboard">
         <h2>Dashboard</h2>
-        <p>Contenu du cookie "userData" : {user}</p>
         <div className="profil">
           <div className="photo">
-            {/* Image is replaced with an actual profile photo if available */}
             <img
               src="https://www.w3schools.com/howto/img_avatar.png"
               alt="avatar"
             />
           </div>
-          <div className="info-widget">
-            <p>{info["nom"] + " " + info["Prenom"]}</p>
+          <div className="nom-prenom">
+            {/* <p>{info["nom"] + " " + info["Prenom"]}</p> */}
+            <p>AHRIZ Alaaeddine</p>
           </div>
-          <div className="info-widget">
-            <p>{info["user"]}</p>
+          <div className="user-id">
+            <p className="nom">{info["user"]}</p>
           </div>
           <div className="preferences">
-            <p>Préférences</p>
-            <div className="info-widget">
-              <p>{info["Ville_par_défaut"]}</p>
+            <div className="ville">
+              <p> <strong>Ville par défaut </strong></p>
+              <p> {info["Ville_par_défaut"] || "Lyon"} </p>
             </div>
-            <p>Options</p>
+            <p><strong>Préférences</strong> </p>
             <div className="option">
               <input
                 type="checkbox"

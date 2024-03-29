@@ -33,6 +33,7 @@ function App() {
               <Route index element={<WeatherApp user={cookies.user} />} />
               <Route path="/login" element={<Login onLogin={handleLogin} />} />
               <Route path="/register" element={<Signup />} />
+              <Route path="/dash" element={<Dashboard />} />
               <Route path="*" element={<Nopage />} />
             </>
           )}
@@ -40,5 +41,5 @@ function App() {
       </BrowserRouter>
     </div>
   );
-  
+
 }
