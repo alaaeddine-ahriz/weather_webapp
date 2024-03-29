@@ -43,9 +43,6 @@ function Signup() {
         <h2 className="login-seconnecter-titre">Register</h2>
         <form onSubmit={handleSubmit}>
         <div className="login-element">
-          <label htmlFor="username">
-            <strong>Username</strong>
-          </label>
           <input
             type="user"
             placeholder="Enter Username"
@@ -55,9 +52,6 @@ function Signup() {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-          <label htmlFor="username">
-            <strong>Phone Number</strong>
-          </label>
           <div className="login-element">
             {/* <label htmlFor="user">
               <strong>Phone number</strong>
