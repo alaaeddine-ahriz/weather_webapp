@@ -13,6 +13,7 @@ function Dashboard(props) {
 
   const [successMessage, setSuccessMessage] = useState(''); // État pour gérer le message de succès
   const [newUserName, setnewUserName] = useState("");
+
   const [newCity, setnewCity] = useState("");
   const [preferences, setPreferences] = useState({});
 
@@ -27,6 +28,8 @@ function Dashboard(props) {
             Préférence_2: info.Préférence_2,
             Préférence_3: info.Préférence_3
           });
+          setnewUserName(info.userName);
+          setnewCity(info.Ville_par_défaut);
         })
         .catch(err => console.log(err));
     }, []); // Utilisation d'une liste de dépendances vide pour exécuter une fois lors du montage initial
@@ -50,6 +53,8 @@ function Dashboard(props) {
                 Préférence_2: res.data.Préférence_2,
                 Préférence_3: res.data.Préférence_3
               });
+              setnewUserName(info.userName);
+              setnewCity(info.Ville_par_défaut);
             })
             .catch(err => console.log(err));
             
