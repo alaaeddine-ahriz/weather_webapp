@@ -43,12 +43,16 @@ export const WeatherApp = (props) => {
     lat: 7.2905715,
     lng: 80.6337262,
   });
+
+  // const ville_default = info.Ville_par_défaut;
+  // console.log("ville_default: " + ville_default);
+
   const [weatherData, setWeatherData] = useState({
     humidity: "-%",
     windSpeed: "-km/h",
     temp: "-°",
     feelsLike: "-°",
-    location: "Villeurbanne",
+    location: info.Ville_par_défaut,
     description: "Overcast clouds",
     tempMinMax: "H:-° L:-°",
   });
@@ -148,8 +152,10 @@ export const WeatherApp = (props) => {
   };
 
   useEffect(() => {
-    fetchWeatherAndGeocodeData("Villeurbanne");
-  }, []);
+    fetchWeatherAndGeocodeData(
+      info.Ville_par_défaut ? info.Ville_par_défaut : "Colombo",
+    );
+  }, [info.Ville_par_défaut]);
 
   const search = async () => {
     const inputElement = document.querySelector(".cityInput");
