@@ -52,6 +52,7 @@ export const WeatherApp = (props) => {
     windSpeed: "-km/h",
     temp: "-°",
     feelsLike: "-°",
+    sealevel: "-",
     location: info.Ville_par_défaut,
     description: "Overcast clouds",
     tempMinMax: "H:-° L:-°",
@@ -95,6 +96,7 @@ export const WeatherApp = (props) => {
         windSpeed: `${Math.floor(data.wind.speed)} km/h`,
         temp: `${Math.floor(data.main.temp)}°`,
         feelsLike: `${Math.floor(data.main.feels_like)}°`,
+        sealevel: `${Math.floor(data.main.sea_level)} hPa`,
         location: data.name,
         description: data.weather[0].description,
         tempMinMax: `H:${Math.floor(data.main.temp_max)}° L:${Math.floor(data.main.temp_min)}°`,
@@ -187,10 +189,6 @@ export const WeatherApp = (props) => {
         }}
         key={backgroundVideo}
       />
-      {/* <div className="header">
-            <Header/>
-        </div> */}
-
       <div className="weatherapp-top-bar">
         <input
           type="text"
@@ -253,6 +251,19 @@ export const WeatherApp = (props) => {
             <div className="data">
               <div className="feels-like">{weatherData.feelsLike}</div>
               <div className="text">Feels Like</div>
+            </div>
+          </div>
+        ) : (
+          /* Si info préférence FALSE */
+          <div></div>
+        )}
+
+        {info.Préférence_4 ? (
+          /* Si info préférence TRUE */
+          <div className="weatherapp-element">
+            <div className="data">
+              <div className="sealevel">{weatherData.sealevel}</div>
+              <div className="text">Sea Level</div>
             </div>
           </div>
         ) : (
