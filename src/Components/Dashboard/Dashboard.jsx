@@ -176,6 +176,7 @@ function Dashboard(props) {
               />
               <label htmlFor="option1">Feels Like</label>
               <br />
+
               <input
                 type="checkbox"
                 id="option2"
@@ -195,6 +196,16 @@ function Dashboard(props) {
                 disabled={!editing}
               />
               <label htmlFor="option3">Humidity</label>
+              <br />
+              <input
+                type="checkbox"
+                id="option4"
+                name="Préférence_4"
+                checked={preferences.Préférence_4}
+                onChange={handlePreferenceChange}
+                disabled={!editing}
+              />
+              <label htmlFor="option4">Sea Level</label>
               <br />
             </div>
 
