@@ -58,17 +58,20 @@ export const WeatherApp = (props) => {
 
   //GESTION DES PREFERENCES 
   useEffect(() => {
-    // Effectuer la requête HTTP lorsque la page est chargée
-    axios.get(`http://localhost:4000/Dashboard?nomRecherche=${user.user}`)
-      .then(res => {
-        console.log("dashboard: " + res.data["nom"]);
-        setInfo(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-        console.log(info.Préférence_1);
-      });
-  }, []); // Utilisation d'une liste de dépendances vide pour exécuter une fois lors du montage initial
+    // Vérifier si le cookie existe
+    if (user) {
+      // Effectuer la requête HTTP lorsque la page est chargée
+      axios.get(`http://localhost:4000/Dashboard?nomRecherche=${user.user}`)
+        .then(res => {
+          console.log("dashboard: " + res.data["nom"]);
+          setInfo(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+          console.log(info.Préférence_1);
+        });
+    }
+  }, []);
 
 
 
@@ -235,9 +238,10 @@ export const WeatherApp = (props) => {
             <div className="text">Feels Like</div>
           </div>
         </div>
-      ) : (
+      ) : ( /* ICI LOGIQUE A CHANGER */
         <div>false</div>
       )}
+      
       </div>
       <div className="large-components">
         <div className="weatherapp-map-container">
