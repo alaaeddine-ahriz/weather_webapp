@@ -51,8 +51,8 @@ app.get('/Dashboard', /*varifyUser,*/ async (req, res) =>{
         const resultat = await UserModel.findOne({ user: nomRecherche });
 
         if (resultat) {
-            const { user, userName, Ville_par_défaut, Préférence_1 , Préférence_2 , Préférence_3, Préférence_4  } = resultat;
-            res.json({ user, userName, Ville_par_défaut, Préférence_1, Préférence_2, Préférence_3 , Préférence_4 });
+            const { user, userName, Ville_par_défaut, Préférence_1 , Préférence_2 , Préférence_3, Préférence_4, Préférence_5 } = resultat;
+            res.json({ user, userName, Ville_par_défaut, Préférence_1, Préférence_2, Préférence_3 , Préférence_4, Préférence_5});
         } else {
             res.status(404).json({ message: "Aucun nom trouvé avec ce critère de recherche." });
         }
@@ -94,7 +94,8 @@ app.put('/update', (req, res) => {
             Préférence_1: preferences.Préférence_1,
             Préférence_2: preferences.Préférence_2,
             Préférence_3: preferences.Préférence_3,
-            Préférence_4: preferences.Préférence_4
+            Préférence_4: preferences.Préférence_4,
+            Préférence_5: preferences.Préférence_5
          } 
         },  // Modifications à apporter
         { new: true } // Option pour retourner le document mis à jour

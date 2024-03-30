@@ -20,6 +20,7 @@ function Dashboard(props) {
     Préférence_2: null,
     Préférence_3: null,
     Préférence_4: null,
+    Préférence_5: null,
   });
 
   useEffect(() => {
@@ -34,6 +35,7 @@ function Dashboard(props) {
           Préférence_2: info.Préférence_2,
           Préférence_3: info.Préférence_3,
           Préférence_4: info.Préférence_4,
+          Préférence_5: info.Préférence_5,
         });
         setnewUserName(info.userName);
         setnewCity(info.Ville_par_défaut);
@@ -65,6 +67,7 @@ function Dashboard(props) {
                   Préférence_2: res.data.Préférence_2,
                   Préférence_3: res.data.Préférence_3,
                   Préférence_4: res.data.Préférence_4,
+                  Préférence_5: res.data.Préférence_5,
                 });
                 setnewUserName(info.userName);
                 setnewCity(info.Ville_par_défaut);
