@@ -222,18 +222,31 @@ export const WeatherApp = (props) => {
         {weatherData.tempMinMax}
       </div>
       <div className="weatherapp-data-container">
-        <div className="weatherapp-element">
-          <div className="data">
-            <div className="humidity-percent">{weatherData.humidity}</div>
-            <div className="text">Humidity</div>
+        {info.Préférence_3 ? (
+          /* Si info préférence TRUE */
+          <div className="weatherapp-element">
+            <div className="data">
+              <div className="humidity-percent">{weatherData.humidity}</div>
+              <div className="text">Humidity</div>
+            </div>
           </div>
-        </div>
-        <div className="weatherapp-element">
-          <div className="data">
-            <div className="wind-speed">{weatherData.windSpeed}</div>
-            <div className="text">Wind</div>
+        ) : (
+          /* Si info préférence FALSE */
+          <div></div>
+        )}
+
+        {info.Préférence_2 /* Si info préférence TRUE */ ? (
+          <div className="weatherapp-element">
+            <div className="data">
+              <div className="wind-speed">{weatherData.windSpeed}</div>
+              <div className="text">Wind</div>
+            </div>
           </div>
-        </div>
+        ) : (
+          /* Si info préférence FALSE */
+          <div></div>
+        )}
+
         {info.Préférence_1 ? (
           /* Si info préférence TRUE */
           <div className="weatherapp-element">
@@ -247,6 +260,7 @@ export const WeatherApp = (props) => {
           <div></div>
         )}
       </div>
+
       <div className="large-components">
         <div className="weatherapp-map-container">
           <MapComponent center={center} />
