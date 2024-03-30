@@ -28,6 +28,7 @@ function Dashboard(props) {
           Préférence_1: info.Préférence_1,
           Préférence_2: info.Préférence_2,
           Préférence_3: info.Préférence_3,
+          Préférence_4: info.Préférence_4,
         });
         setnewUserName(info.userName);
         setnewCity(info.Ville_par_défaut);
@@ -58,6 +59,7 @@ function Dashboard(props) {
                   Préférence_1: res.data.Préférence_1,
                   Préférence_2: res.data.Préférence_2,
                   Préférence_3: res.data.Préférence_3,
+                  Préférence_4: res.data.Préférence_4,
                 });
                 setnewUserName(info.userName);
                 setnewCity(info.Ville_par_défaut);
@@ -170,7 +172,7 @@ function Dashboard(props) {
                 type="checkbox"
                 id="option1"
                 name="Préférence_1"
-                checked={preferences.Préférence_1}
+                checked={editing ? preferences.Préférence_1 : info.Préférence_1}
                 onChange={handlePreferenceChange}
                 disabled={!editing}
               />
@@ -180,7 +182,7 @@ function Dashboard(props) {
                 type="checkbox"
                 id="option2"
                 name="Préférence_2"
-                checked={preferences.Préférence_2}
+                checked={editing ? preferences.Préférence_2 : info.Préférence_2}
                 onChange={handlePreferenceChange}
                 disabled={!editing}
               />
@@ -190,11 +192,23 @@ function Dashboard(props) {
                 type="checkbox"
                 id="option3"
                 name="Préférence_3"
-                checked={preferences.Préférence_3}
+                checked={editing ? preferences.Préférence_3 : info.Préférence_3}
                 onChange={handlePreferenceChange}
                 disabled={!editing}
               />
               <label htmlFor="option3">Humidity</label>
+              <br />
+              <br />
+              
+              <input
+                type="checkbox"
+                id="option4"
+                name="Préférence_4"
+                checked={editing ? preferences.Préférence_4 : info.Préférence_4}
+                onChange={handlePreferenceChange}
+                disabled={!editing}
+              />
+              <label htmlFor="option4">Humidity</label>
               <br />
             </div>
 

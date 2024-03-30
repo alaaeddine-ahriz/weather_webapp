@@ -51,8 +51,8 @@ app.get('/Dashboard', /*varifyUser,*/ async (req, res) =>{
         const resultat = await UserModel.findOne({ user: nomRecherche });
 
         if (resultat) {
-            const { user, userName, Ville_par_défaut, Préférence_1 , Préférence_2 , Préférence_3  } = resultat;
-            res.json({ user, userName, Ville_par_défaut, Préférence_1, Préférence_2, Préférence_3 });
+            const { user, userName, Ville_par_défaut, Préférence_1 , Préférence_2 , Préférence_3, Préférence_4  } = resultat;
+            res.json({ user, userName, Ville_par_défaut, Préférence_1, Préférence_2, Préférence_3 , Préférence_4 });
         } else {
             res.status(404).json({ message: "Aucun nom trouvé avec ce critère de recherche." });
         }
