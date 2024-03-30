@@ -15,7 +15,13 @@ function Dashboard(props) {
   const [newUserName, setnewUserName] = useState("");
 
   const [newCity, setnewCity] = useState("");
-  const [preferences, setPreferences] = useState({});
+  const [preferences, setPreferences] = useState({
+    
+    Préférence_1: null,
+    Préférence_2: null,
+    Préférence_3: null, 
+    Préférence_4: null
+  });
 
   useEffect(() => {
     // Effectuer la requête HTTP lorsque la page est chargée
@@ -208,7 +214,7 @@ function Dashboard(props) {
                 onChange={handlePreferenceChange}
                 disabled={!editing}
               />
-              <label htmlFor="option4">Humidity</label>
+              <label htmlFor="option4">Sea level</label>
               <br />
             </div>
 

@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema({
     Préférence_3: {
         type: Boolean,
         default: true
+    },
+    Préférence_4: {
+        type: Boolean,
+        default: true
     }
 },
 )

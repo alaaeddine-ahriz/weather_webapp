@@ -93,7 +93,8 @@ app.put('/update', (req, res) => {
             Ville_par_défaut: newCity,
             Préférence_1: preferences.Préférence_1,
             Préférence_2: preferences.Préférence_2,
-            Préférence_3: preferences.Préférence_3
+            Préférence_3: preferences.Préférence_3,
+            Préférence_4: preferences.Préférence_4
          } 
         },  // Modifications à apporter
         { new: true } // Option pour retourner le document mis à jour
