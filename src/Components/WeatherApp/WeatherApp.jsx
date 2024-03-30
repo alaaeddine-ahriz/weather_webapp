@@ -3,7 +3,7 @@ import MapComponent from "./MapComponent";
 import { Link } from "react-router-dom";
 import WeatherForecastList from "./ForecastComponent";
 import "./WeatherApp.css";
-import axios from 'axios'
+import axios from "axios";
 
 // Importing images and icons
 // import search_icon from "../Assets/search.png";
@@ -29,7 +29,6 @@ import thunderstorm from "../Assets/thunderstorm.jpg";
 import snow from "../Assets/snow.jpg";
 import mist from "../Assets/mist.jpg";
 
-
 export const center = {
   lat: 7.2905715,
   lng: 80.6337262,
@@ -38,7 +37,6 @@ export const center = {
 export const WeatherApp = (props) => {
   const user = props.user;
   const [info, setInfo] = useState([]);
-  
 
   const [backgroundVideo, setBackgroundVideo] = useState(clear_sky);
   const [center, setCenter] = useState({
@@ -56,24 +54,23 @@ export const WeatherApp = (props) => {
   });
   const [Forecasts, setForecasts] = useState({}); // État local pour stocker les prévisions météo
 
-  //GESTION DES PREFERENCES 
+  //GESTION DES PREFERENCES
   useEffect(() => {
     // Vérifier si le cookie existe
     if (user) {
       // Effectuer la requête HTTP lorsque la page est chargée
-      axios.get(`http://localhost:4000/Dashboard?nomRecherche=${user.user}`)
-        .then(res => {
+      axios
+        .get(`http://localhost:4000/Dashboard?nomRecherche=${user.user}`)
+        .then((res) => {
           console.log("dashboard: " + res.data["nom"]);
           setInfo(res.data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           console.log(info.Préférence_1);
         });
     }
   }, []);
-
-
 
   const api_key_current = "41ad9850d25b95de0ec5b350ddd03b16";
   const api_key_forecast = "0007009a972248f19225fb70d78538b3";
@@ -187,7 +184,7 @@ export const WeatherApp = (props) => {
       {/* <div className="header">
             <Header/>
         </div> */}
-        
+
       <div className="weatherapp-top-bar">
         <input
           type="text"
@@ -232,16 +229,17 @@ export const WeatherApp = (props) => {
           </div>
         </div>
         {info.Préférence_1 ? (
-        <div className="weatherapp-element">
-          <div className="data">
-            <div className="feels-like">{weatherData.feelsLike}</div>
-            <div className="text">Feels Like</div>
+          /* Si info préférence TRUE */
+          <div className="weatherapp-element">
+            <div className="data">
+              <div className="feels-like">{weatherData.feelsLike}</div>
+              <div className="text">Feels Like</div>
+            </div>
           </div>
-        </div>
-      ) : ( /* ICI LOGIQUE A CHANGER */
-        <div>false</div>
-      )}
-      
+        ) : (
+          /* Si info préférence FALSE */
+          <div></div>
+        )}
       </div>
       <div className="large-components">
         <div className="weatherapp-map-container">
