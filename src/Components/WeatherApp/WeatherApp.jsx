@@ -56,6 +56,7 @@ export const WeatherApp = (props) => {
     location: info.Ville_par_défaut,
     description: "Overcast clouds",
     tempMinMax: "H:-° L:-°",
+    visibility: "-km",
   });
   const [Forecasts, setForecasts] = useState({}); // État local pour stocker les prévisions météo
 
@@ -100,7 +101,10 @@ export const WeatherApp = (props) => {
         location: data.name,
         description: data.weather[0].description,
         tempMinMax: `H:${Math.floor(data.main.temp_max)}° L:${Math.floor(data.main.temp_min)}°`,
+        visibility: `${Math.floor(data.visibility / 1000)} km`,
       });
+
+      console.log(data.main.sea_level);
 
       // Setting background video based on current weather
       const weatherVideoMap = {
@@ -264,6 +268,19 @@ export const WeatherApp = (props) => {
             <div className="data">
               <div className="sealevel">{weatherData.sealevel}</div>
               <div className="text">Sea Level</div>
+            </div>
+          </div>
+        ) : (
+          /* Si info préférence FALSE */
+          <div></div>
+        )}
+
+        {info.Préférence_5 ? (
+          /* Si info préférence TRUE */
+          <div className="weatherapp-element">
+            <div className="data">
+              <div className="visibility">{weatherData.visibility}</div>
+              <div className="text">Visibility</div>
             </div>
           </div>
         ) : (

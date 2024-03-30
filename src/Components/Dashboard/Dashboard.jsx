@@ -16,11 +16,10 @@ function Dashboard(props) {
 
   const [newCity, setnewCity] = useState("");
   const [preferences, setPreferences] = useState({
-    
     Préférence_1: null,
     Préférence_2: null,
-    Préférence_3: null, 
-    Préférence_4: null
+    Préférence_3: null,
+    Préférence_4: null,
   });
 
   useEffect(() => {
@@ -205,7 +204,6 @@ function Dashboard(props) {
               <label htmlFor="option3">Humidity</label>
               <br />
               <br />
-              
               <input
                 type="checkbox"
                 id="option4"
@@ -215,6 +213,16 @@ function Dashboard(props) {
                 disabled={!editing}
               />
               <label htmlFor="option4">Sea level</label>
+              <br />
+              <input
+                type="checkbox"
+                id="option5"
+                name="Préférence_5"
+                checked={editing ? preferences.Préférence_5 : info.Préférence_5}
+                onChange={handlePreferenceChange}
+                disabled={!editing}
+              />
+              <label htmlFor="option5">Visibility</label>
               <br />
             </div>
 
