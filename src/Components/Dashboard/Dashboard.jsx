@@ -25,22 +25,26 @@ function Dashboard(props) {
     Préférence_5: null,
   });
 
+  const updatePreferences = (data) => {
+    setInfo(data);
+    setPreferences({
+      Préférence_1: data.Préférence_1,
+      Préférence_2: data.Préférence_2,
+      Préférence_3: data.Préférence_3,
+      Préférence_4: data.Préférence_4,
+      Préférence_5: data.Préférence_5,
+    });
+    setnewUserName(data.userName);
+    setnewCity(data.Ville_par_défaut);
+  };
+  
   useEffect(() => {
     // Effectuer la requête HTTP lorsque la page est chargée
     axios
       .get(`http://localhost:4000/Dashboard?nomRecherche=${user}`)
       .then((res) => {
         console.log("dashboard: " + res.data["nom"]);
-        setInfo(res.data);
-        setPreferences({
-          Préférence_1: info.Préférence_1,
-          Préférence_2: info.Préférence_2,
-          Préférence_3: info.Préférence_3,
-          Préférence_4: info.Préférence_4,
-          Préférence_5: info.Préférence_5,
-        });
-        setnewUserName(info.userName);
-        setnewCity(info.Ville_par_défaut);
+        updatePreferences(res.data);
       })
       .catch((err) => console.log(err));
   }, []); // Utilisation d'une liste de dépendances vide pour exécuter une fois lors du montage initial
@@ -63,16 +67,7 @@ function Dashboard(props) {
               .get(`http://localhost:4000/Dashboard?nomRecherche=${user}`)
               .then((res) => {
                 console.log("dashboard: " + res.data["nom"]);
-                setInfo(res.data);
-                setPreferences({
-                  Préférence_1: res.data.Préférence_1,
-                  Préférence_2: res.data.Préférence_2,
-                  Préférence_3: res.data.Préférence_3,
-                  Préférence_4: res.data.Préférence_4,
-                  Préférence_5: res.data.Préférence_5,
-                });
-                setnewUserName(info.userName);
-                setnewCity(info.Ville_par_défaut);
+                updatePreferences(res.data);
               })
               .catch((err) => console.log(err));
           } else {
@@ -97,12 +92,22 @@ function Dashboard(props) {
 
   const handlePreferenceChange = (e) => {
     const { name, checked } = e.target;
-    setPreferences((prevState) => ({
-      ...prevState,
-      [name]: checked,
-    }));
+  
+    // Compter le nombre de préférences actuellement cochées
+    const numCheckedPreferences = Object.values(preferences).reduce((acc, curr) => curr ? acc + 1 : acc, 0);
+  
+    // Limiter à trois préférences cochées
+    if (numCheckedPreferences < 3 || !checked) {
+      setPreferences((prevState) => ({
+        ...prevState,
+        [name]: checked,
+      }));
+    } else {
+      // Afficher un message d'alerte ou une notification pour informer l'utilisateur qu'il ne peut pas cocher plus de trois cases
+      alert("Vous ne pouvez sélectionner que trois préférences");
+    }
   };
-
+  
   function handleLogout() {
     // Supprimer le cookie 'user'
     props.onLogout();
