@@ -44,6 +44,18 @@ const verifyUser = (req, res, next) => {
     }
 };
 
+app.get("/*", function (req, res) {
+    res.sendFile(
+        path.join(__dirname + "../client/build/index.html"),
+        function (err) {
+            if (err) {
+                res.status(500).send(err);
+            }
+        }
+    );
+}
+);
+
 app.get('/Dashboard', /*varifyUser,*/ async (req, res) =>{
     const { nomRecherche } = req.query; // Utilisation de req.query pour récupérer les paramètres de l'URL
 
@@ -117,8 +129,6 @@ app.put('/update', (req, res) => {
 });
 
 
-
-
 app.post('/login', (req, res) => {
     const { user } = req.body;
     UserModel.findOne({ user: user })
@@ -149,6 +159,8 @@ app.post('/login', (req, res) => {
         // });
 });
 
-app.listen(process.env.PORT, () => {
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => {
     console.log("Server is Running");
 });
