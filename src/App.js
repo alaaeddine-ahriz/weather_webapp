@@ -1,5 +1,5 @@
 // All import statements should be at the top of the file
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { WeatherApp } from './Components/WeatherApp/WeatherApp';
 import Login from './Components/Login/Login';
@@ -13,19 +13,27 @@ export default App;
 
 function App() {
 
-  const [cookies, setCookie] = useCookies(['user'])
+  const [cookies, setCookie, removeCookie] = useCookies(['user'])
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
 
   function handleLogin(user) {
     setCookie('user', user, { path: '/' })
+    setIsLoggedIn(true);
+  }
+  function handleLogout() {
+    removeCookie('user', { path: '/' });
+    setIsLoggedIn(false);
   }
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {cookies.user ? (
+          {cookies.user? (
             <>
               <Route index element={<WeatherApp user={cookies.user} />} />
-              <Route path="/dashboard" element={<Dashboard user={cookies.user.user} />} />
+              <Route path="/dashboard" element={<Dashboard user={cookies.user.user} onLogout={handleLogout} />} />
               <Route path="*" element={<Nopage />} />
             </>
           ) : (

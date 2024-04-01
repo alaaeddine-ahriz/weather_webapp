@@ -38,6 +38,8 @@ export const WeatherApp = (props) => {
   const user = props.user;
   const [info, setInfo] = useState([]);
 
+  const isUserEmpty = !user || Object.keys(user).length === 0;
+
   const [backgroundVideo, setBackgroundVideo] = useState(clear_sky);
   const [center, setCenter] = useState({
     lat: 7.2905715,
@@ -206,7 +208,7 @@ export const WeatherApp = (props) => {
           }}
         />
         <div className="weatherapp-account">
-          <Link to={user ? "/dashboard" : "/login"}>
+          <Link to={isUserEmpty ? "/login" : (user ? "/dashboard" : "/login")}>
             <img
               src={profile_image}
               alt="Profile"

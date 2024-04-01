@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Dashboard.css";
+import { useCookies } from 'react-cookie';
 import axios from "axios";
 
 function Dashboard(props) {
+  const [cookies, removeCookie] = useCookies(['user']);
   const user = props.user;
   const [suc, setSuc] = useState();
   const [info, setInfo] = useState([]);
@@ -101,12 +103,20 @@ function Dashboard(props) {
     }));
   };
 
+  function handleLogout() {
+    // Supprimer le cookie 'user'
+    props.onLogout();
+    // Rediriger l'utilisateur vers la page d'accueil
+    navigate('/');
+  }
+
   return (
     <div className="login-container">
       <div className="dashboard">
         <Link to="/">
           <button type="submit">Home</button>
         </Link>
+        <button onClick={handleLogout}>Log out</button>
         <h2>Dashboard</h2>
         <div className="profil">
           <div className="photo">
