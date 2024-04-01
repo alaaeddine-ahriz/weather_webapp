@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Dashboard.css";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
 function Dashboard(props) {
-  const [cookies, removeCookie] = useCookies(['user']);
+  const [cookies, removeCookie] = useCookies(["user"]);
   const user = props.user;
   const [suc, setSuc] = useState();
   const [info, setInfo] = useState([]);
@@ -37,7 +37,7 @@ function Dashboard(props) {
     setnewUserName(data.userName);
     setnewCity(data.Ville_par_défaut);
   };
-  
+
   useEffect(() => {
     // Effectuer la requête HTTP lorsque la page est chargée
     axios
@@ -92,10 +92,13 @@ function Dashboard(props) {
 
   const handlePreferenceChange = (e) => {
     const { name, checked } = e.target;
-  
+
     // Compter le nombre de préférences actuellement cochées
-    const numCheckedPreferences = Object.values(preferences).reduce((acc, curr) => curr ? acc + 1 : acc, 0);
-  
+    const numCheckedPreferences = Object.values(preferences).reduce(
+      (acc, curr) => (curr ? acc + 1 : acc),
+      0,
+    );
+
     // Limiter à trois préférences cochées
     if (numCheckedPreferences < 3 || !checked) {
       setPreferences((prevState) => ({
@@ -107,22 +110,23 @@ function Dashboard(props) {
       alert("Vous ne pouvez sélectionner que trois préférences");
     }
   };
-  
+
   function handleLogout() {
     // Supprimer le cookie 'user'
     props.onLogout();
     // Rediriger l'utilisateur vers la page d'accueil
-    navigate('/');
+    navigate("/");
   }
 
   return (
     <div className="login-container">
       <div className="dashboard">
         <Link to="/">
-          <button type="submit">Home</button>
+          <button type="submit">Back to Weather</button>
         </Link>
-        <button onClick={handleLogout}>Log out</button>
-        <h2>Dashboard</h2>
+        <div className="dashboard-title">
+          <h2>Dashboard</h2>
+        </div>
         <div className="profil">
           <div className="photo">
             <img
@@ -146,7 +150,7 @@ function Dashboard(props) {
                 placeholder={info.userName}
                 autoComplete="off"
                 name="userName_db"
-                className="form-control rounded-0"
+                className="form-control"
                 onChange={(e) => setnewUserName(e.target.value)}
               />
             ) : (
@@ -155,7 +159,7 @@ function Dashboard(props) {
                 value={info.userName}
                 autoComplete="off"
                 name="userName"
-                className="form-control rounded-0"
+                className="form-control"
               />
             )}
           </div>
@@ -163,7 +167,7 @@ function Dashboard(props) {
             <div className="ville">
               <p>
                 {" "}
-                <strong>Ville par défaut </strong>
+                <strong>City</strong>
               </p>
               {editing ? (
                 <input
@@ -188,63 +192,77 @@ function Dashboard(props) {
               <div className="success-message">{successMessage}</div>
             )}
             <p>
-              <strong>Préférences</strong>
+              <strong>Preferences</strong>
             </p>
             <div className="option">
-              <input
-                type="checkbox"
-                id="option1"
-                name="Préférence_1"
-                checked={editing ? preferences.Préférence_1 : info.Préférence_1}
-                onChange={handlePreferenceChange}
-                disabled={!editing}
-              />
-              <label htmlFor="option1">Feels Like</label>
-              <br />
-              <input
-                type="checkbox"
-                id="option2"
-                name="Préférence_2"
-                checked={editing ? preferences.Préférence_2 : info.Préférence_2}
-                onChange={handlePreferenceChange}
-                disabled={!editing}
-              />
-              <label htmlFor="option2">Wind Speed</label>
-              <br />
-              <input
-                type="checkbox"
-                id="option3"
-                name="Préférence_3"
-                checked={editing ? preferences.Préférence_3 : info.Préférence_3}
-                onChange={handlePreferenceChange}
-                disabled={!editing}
-              />
-              <label htmlFor="option3">Humidity</label>
-              <br />
-              <br />
-              <input
-                type="checkbox"
-                id="option4"
-                name="Préférence_4"
-                checked={editing ? preferences.Préférence_4 : info.Préférence_4}
-                onChange={handlePreferenceChange}
-                disabled={!editing}
-              />
-              <label htmlFor="option4">Sea level</label>
-              <br />
-              <input
-                type="checkbox"
-                id="option5"
-                name="Préférence_5"
-                checked={editing ? preferences.Préférence_5 : info.Préférence_5}
-                onChange={handlePreferenceChange}
-                disabled={!editing}
-              />
-              <label htmlFor="option5">Visibility</label>
-              <br />
+              <div className="preference-item">
+                <input
+                  type="checkbox"
+                  id="option1"
+                  name="Préférence_1"
+                  checked={
+                    editing ? preferences.Préférence_1 : info.Préférence_1
+                  }
+                  onChange={handlePreferenceChange}
+                  disabled={!editing}
+                />
+                <label htmlFor="option1">Feels Like</label>
+              </div>
+              <div className="preference-item">
+                <input
+                  type="checkbox"
+                  id="option2"
+                  name="Préférence_2"
+                  checked={
+                    editing ? preferences.Préférence_2 : info.Préférence_2
+                  }
+                  onChange={handlePreferenceChange}
+                  disabled={!editing}
+                />
+                <label htmlFor="option2">Wind Speed</label>
+              </div>
+              <div className="preference-item">
+                <input
+                  type="checkbox"
+                  id="option3"
+                  name="Préférence_3"
+                  checked={
+                    editing ? preferences.Préférence_3 : info.Préférence_3
+                  }
+                  onChange={handlePreferenceChange}
+                  disabled={!editing}
+                />
+                <label htmlFor="option3">Humidity</label>
+              </div>
+              <div className="preference-item">
+                <input
+                  type="checkbox"
+                  id="option4"
+                  name="Préférence_4"
+                  checked={
+                    editing ? preferences.Préférence_4 : info.Préférence_4
+                  }
+                  onChange={handlePreferenceChange}
+                  disabled={!editing}
+                />
+                <label htmlFor="option4">Sea level</label>
+              </div>
+              <div className="preference-item">
+                <input
+                  type="checkbox"
+                  id="option5"
+                  name="Préférence_5"
+                  checked={
+                    editing ? preferences.Préférence_5 : info.Préférence_5
+                  }
+                  onChange={handlePreferenceChange}
+                  disabled={!editing}
+                />
+                <label htmlFor="option5">Visibility</label>
+              </div>
             </div>
-
             <button onClick={toggleEditing}>{editing ? "Save" : "Edit"}</button>
+            <button onClick={handleLogout}>Log out</button>
           </div>
         </div>
       </div>

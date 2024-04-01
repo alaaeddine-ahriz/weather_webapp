@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 720px;
   height: 100vh;
-  background-image: url("../Assets/few_clouds.jpg");
+  background-image: url("../Assets/clear_sky_img1.jpg");
   background-size: cover;
   background-position: center;
   margin: auto;
@@ -29,16 +29,42 @@
   align-items: center;
   overflow: hidden;
   text-align: center;
+  color: white;
+  text-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .option {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(120px, 1fr)
+  ); /* Create a responsive grid */
+  gap: 10px;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.preference-item {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  align-items: center; /* Ensures that the checkbox aligns with the label */
+}
+
+.preference-item label {
+  margin-left: 8px; /* Space between the checkbox and the label */
 }
 
 .profil {
   width: 80%;
+}
+
+.form-control {
+  color: black;
 }
 
 .photo {
@@ -61,8 +87,9 @@
   margin: 10px 0;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 0px;
   width: calc(100% - 20px);
+  text-align: center;
 }
 
 .success-message {
