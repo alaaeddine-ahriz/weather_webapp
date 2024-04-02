@@ -208,7 +208,7 @@ export const WeatherApp = (props) => {
           }}
         />
         <div className="weatherapp-account">
-          <Link to={isUserEmpty ? "/login" : (user ? "/dashboard" : "/login")}>
+          <Link to={isUserEmpty ? "/login" : user ? "/dashboard" : "/login"}>
             <img
               src={profile_image}
               alt="Profile"
