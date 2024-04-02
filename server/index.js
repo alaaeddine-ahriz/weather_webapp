@@ -17,6 +17,17 @@ app.use(cors({
 }));
 app.use(cookieParser());
 
+
+app.get('/*', (req,res) => {
+    res.senfFile(
+        path.join(__dirname,"../client/build/index.html"),
+        function(err){
+            if(err){
+                res.status(500).send(err);
+        }
+    );
+});
+
 if (process.env.ON === 'false') {
     URL = process.env.DB_URL;
 } else {
